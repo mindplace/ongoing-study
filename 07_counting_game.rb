@@ -23,41 +23,35 @@
 # Make your method take two inputs -- the number of players and the number 
 # you're counting up to. Then see who says the last number each time!
 
-def index(players, i)
-    (i = players - 1) if i == -1
-    i = 0 if i == players
-    i
-end
-
 
 def counting_game(players, max)
     player_array = (1..players).to_a
+    
     direction = 1
     i = 1
     player_index = 0
     while i < max
-        current_player = player_index
-        if (i % 7 == 1) && (i % 11 == 1)
+    
+        # players index gets circled
+        player_index = 0 if (player_index == players + 1)
+        (player_index = players - 1) if player_index == -1
+        
+        puts "player #{player_array[player_index]} says #{i}"
+        
+        if (i % 7 == 0) && (i % 11 == 0)
             direction *= -1
-            current_player = index(players, (current_player - direction))
-        elsif i % 11 == 1
-            current_player = index(players, (current_player + 1))
-        elsif i % 7 == 1 
+            player_index += 1 * direction
+        elsif i % 11 == 0
+            player_index += 2
+        elsif i % 7 == 0
             direction *= -1
-            current_player = index(players, (current_player - (1 * direction)))
+            player_index += 1 * direction
         else
-            current_player = index(players, current_player)
+            player_index += 1 * direction
         end
-        
-        puts "player #{player_array[current_player]} says #{i}"
-        
-        if current_player < player_index
-            player_index -= 2
-        else player_index += 1
-        end
-        
+
         i += 1
     end
 end
 
-puts counting_game(10, 20)
+puts counting_game(10, 100)
