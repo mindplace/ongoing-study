@@ -30,24 +30,25 @@ def counting_game(players, max)
     direction = 1
     i = 1
     player_index = 0
-    while i < max
+    
+    while i <= max
     
         # players index gets circled
-        player_index = 0 if (player_index == players + 1)
+        player_index = 0 if (player_index == players)
         (player_index = players - 1) if player_index == -1
         
-        puts "player #{player_array[player_index]} says #{i}"
+        puts "player #{player_array[player_index]} says #{i}, direction is #{direction < 0 ? "backwards" : "forwards"}"
         
         if (i % 7 == 0) && (i % 11 == 0)
             direction *= -1
-            player_index += 1 * direction
+            direction == -1 ? player_index -= 2 : player_index += 2
         elsif i % 11 == 0
-            player_index += 2
+            direction == -1 ? player_index -= 2 : player_index += 2
         elsif i % 7 == 0
             direction *= -1
-            player_index += 1 * direction
+            direction == -1 ? player_index -= 1 : player_index += 1
         else
-            player_index += 1 * direction
+            direction == -1 ? player_index -= 1 : player_index += 1
         end
 
         i += 1
