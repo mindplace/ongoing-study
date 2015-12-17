@@ -6,7 +6,7 @@ def uniques(array)
     array = array.map{|i| i.to_s}.sort
     array.each_with_index do |item, index| 
         if index == 0
-            returning << item if index == 0 
+            returning << item
         else 
             returning << item if item != array[index - 1]
         end
