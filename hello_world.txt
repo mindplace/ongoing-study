@@ -1,3 +1,4 @@
 Hello World!
 
-Now I'm on the second branch. 
+Now I'm on the second branch having
+deleted the third branch. 
