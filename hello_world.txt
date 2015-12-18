@@ -1,4 +1,3 @@
 Hello World!
 
-Now I'm on the second branch having
-deleted the third branch. 
+I'm making more changes here. 
