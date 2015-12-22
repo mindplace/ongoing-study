@@ -1,16 +1,16 @@
 # Loop through all the numbers, stopping when you encounter a number that is 
 # (a) >250 and (b) divisible by 7. Print this number down!
 
-#def ridiculous_loop
-#    (1..100000000).to_a.each do |num|
-#        if (num > 250) && (num % 7 == 0)
-#            puts num
-#            break
-#        end
-#    end
-#end
+def ridiculous_loop
+    (1..100000000).each do |num|
+        if (num > 250) && (num % 7 == 0)
+            puts num
+            break
+        end
+    end
+end
 
-# puts ridiculous_loop
+# ridiculous_loop
 
 # Print out all the factors for each of the numbers 1 through 100.
 
@@ -37,7 +37,7 @@ def bubble_sort(array)
     "#{array.join(", ")}"
 end
 
-puts bubble_sort([5, 4, 3, 2, 1])
+#puts bubble_sort([5, 4, 3, 2, 1])
 
 # Write a method substrings that will take a String and return an array containing 
 # each of its substrings. 
@@ -55,5 +55,5 @@ def subber(string)
    "[#{string_array.reject{|l| l.empty?}.uniq.join(", ")}]"
 end
 
-puts subber("cat")
-puts subber("puppy")
+#puts subber("cat")
+#puts subber("puppy")

@@ -56,7 +56,7 @@ def swingers(arrays)
    end
 end
 
- swingers([["Clyde", "Bonnie"], ["Romeo", "Juliet"], ["Paris", "Helen"], ["Thomas", "Esther"] ])
+ swingers([["Clyde", "Bonnie"], ["Romeo", "Juliet"], ["Paris", "Helen"], ["Cydal", "Miri"]])
 
 # Bonus problem: make a version of the swingers game that guarantees that all 
 # the couples end up with a different partner!
