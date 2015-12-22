@@ -139,32 +139,30 @@ end
 # we can see that the 6th prime is 13.
 # What is the 10 001st prime number?
 
-def find_prime
-    primes = [2, 3, 5, 7]
-    current_prime = 7
+
+def find_prime(max, number)
     now = Time.now
-    while true
-        testing_num = current_prime + 2
-        while true 
-            if ((2..((testing_num / 2) + 1)).to_a.select{|x| testing_num % x == 0} != [])
-                testing_num += 2
-            else
-                break
-            end
-        end
-        # This solution works even though it takes 240.08 seconds;
-        # I've optimized it for speed by altering how I test numbers for being prime, 
-        # but that's not been enough to make it faster. Can't figure out
-        # a non-brute force method to solve this problem. 
-        current_prime = testing_num
-        primes << current_prime
-        break if primes.size == 10001
+    range = [0, 0, 2]
+    (3..max).each do |num|
+        num.odd? ? (range << num) : (range << 0)
     end
-    puts primes.last
-    puts (Time.now - now)
+    i = range[3]
+    while true
+        (i*i).step(max, i) do |num|
+            range[num] = 0
+        end
+        i = range.find{|num| (num > i)}
+        break if i == nil
+    end
+    range = range.reject{|num| num == 0}
+    puts range.join(",")
+    puts range.length
+    puts range[number - 1]
+    puts "took #{Time.now - now} seconds"
 end
 
-# find_prime
+find_prime(105000, 10001)
+
 
 # 8. Largest Product in a Series
 # The four adjacent digits in the 1000-digit number that have the greatest product are 9 × 9 × 8 × 9 = 5832.
@@ -277,17 +275,17 @@ end
 def sum_of_primes(max)
     now = Time.now
     range = get_range(max)
-    i = range[2]
+    i = range[3]
     while true
         (i*i).step(max, i) do |num|
             range[num] = 0
         end
-        i = range.find{|number| (number > i) && (number != 0)}
+        i = range.find{|number| (number > i)}
         break if i == nil
     end
-    #puts "primes are #{range.select{|num| num > 0}.join(",")}"
+    puts "primes are #{range.select{|num| num > 0}.join(",")}"
     puts range.inject(:+)
     puts (Time.now - now)
 end
 
-#sum_of_primes(2000000)
+#sum_of_primes(200)
