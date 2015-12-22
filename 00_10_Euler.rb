@@ -256,4 +256,38 @@ def adding_up_square_roots(pythagoreans)
     end
 end
 
-adding_up_square_roots(pythagoreans)
+#adding_up_square_roots(pythagoreans)
+
+# 10. Prime summation
+# The sum of the primes below 10 is 2 + 3 + 5 + 7 = 17.
+# Find the sum of all the primes below two million.
+#
+# Even though I managed to create a sieve of Eratosthenes as part of
+# my solution, it doesn't solve the problem fast enough. There's an element
+# that's missing.
+
+def get_range(max)
+    range = [0, 0, 2]
+    (3..max).each do |num|
+        num.odd? ? (range << num) : (range << 0)
+    end
+    range
+end
+
+def sum_of_primes(max)
+    now = Time.now
+    range = get_range(max)
+    i = range[2]
+    while true
+        (i*i).step(max, i) do |num|
+            range[num] = 0
+        end
+        i = range.find{|number| (number > i) && (number != 0)}
+        break if i == nil
+    end
+    #puts "primes are #{range.select{|num| num > 0}.join(",")}"
+    puts range.inject(:+)
+    puts (Time.now - now)
+end
+
+#sum_of_primes(2000000)
