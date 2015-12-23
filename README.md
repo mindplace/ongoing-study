@@ -11,5 +11,7 @@ FizzBuzz: [RubyQuiz #126](http://rubyquiz.com/quiz126.html) <br />
 <br />
 Project Euler problems: access the problems [here](https://projecteuler.net/archives) and solutions [here](https://code.google.com/p/projecteuler-solutions/wiki/ProjectEulerSolutions). <br />
 <br />
+[Test First Ruby](http://testfirst.org/learn_ruby) challenges with my solutions. <br />
+<br />
 [Ruby challenge problems from Viking Code School's Prep Work](http://www.vikingcodeschool.com/web-markup-and-coding/level-up-your-ruby-judo)
 
