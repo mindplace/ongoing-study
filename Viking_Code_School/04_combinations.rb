@@ -11,3 +11,5 @@ def combinations(first, second)
     end
     "[#{combined.join(",")}]"
 end
+
+puts combinations(["a","b","c"],["d","e","f"])

@@ -161,7 +161,7 @@ def find_prime(max, number)
     puts "took #{Time.now - now} seconds"
 end
 
-find_prime(105000, 10001)
+#find_prime(105000, 10001)
 
 
 # 8. Largest Product in a Series
@@ -278,6 +278,8 @@ def sum_of_primes(max)
     i = range[3]
     while true
         (i*i).step(max, i) do |num|
+            puts num
+            puts range.join(",")
             range[num] = 0
         end
         i = range.find{|number| (number > i)}
@@ -288,4 +290,4 @@ def sum_of_primes(max)
     puts (Time.now - now)
 end
 
-#sum_of_primes(200)
+sum_of_primes(20)
