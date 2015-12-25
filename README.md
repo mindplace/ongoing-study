@@ -6,7 +6,7 @@ My repo of coding challenges solved in the pursuit of learning Ruby. <br />
 <b>Included:</b> <br />
 <br />
 => appAcademy: Problems from appAcademy's [Ruby Basics](http://prepwork.appacademy.io/mini-curriculum/), a great mini-curriculum offered by appAcademy<br /> 
-&emsp; to help their applicants dive more deeply into Ruby in order to demonstrate their capabilities.
+&emsp; to help their applicants dive more deeply into Ruby.
 <br />
 => My [Coderbyte](https://coderbyte.com/) solutions for all 3 difficulty levels, excluding most of the easy-level problems.
 <br />
