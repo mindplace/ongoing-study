@@ -28,36 +28,40 @@ def CountingMinutesI(str)
   array.map! do |item|
     item.index(":") != 2 ? item.insert(0, "0") : item
   end
-  
+  both = true if (str.split("").include?("p") && str.split("").include?("a"))
   first = ""
   second = ""
+  first_minutes = 0
+  second_minutes = 0
   array.each do |item|
     if array.index(item) == 0 
       item = item.split("").reject{|char| char == ":"}
       hours = (item.include?("p") ? to_military(item[0..1].join.to_i, "p") : to_military(item[0..1].join.to_i, "a"))
       minutes = (item[2..3]).join.to_s
-      first = (hours.to_s + minutes).to_i
+      first = (hours + "00").to_i
+      first_minutes = minutes
     elsif array.index(item) == 1
       item = item.split("").reject{|char| char == ":"}
       hours = (item.include?("p") ? to_military(item[0..1].join.to_i, "p") : to_military(item[0..1].join.to_i, "a"))
       minutes = (item[2..3]).join.to_s
-      second = (hours.to_s + minutes).to_i
+      second = (hours + "00").to_i
+      second_minutes = minutes
     end
   end
-  difference = 0
-  second += 2400 if first > second
-  
-  if second > first
-    difference = ((second - first) / 100) * 60
-    difference += first.to_s[2..3].to_i
+  if second <= first && both == true
+    second += 2400
+  elsif second <= first && second_minutes <= first_minutes
+    second += 2400
   end
-  
+  difference = ((second - first) / 100) * 60
+  difference -= (first_minutes.to_i - second_minutes.to_i)
   difference
 end
 
-#puts CountingMinutesI("1:23am-1:08am") #should == 1383
+#puts CountingMinutesI("1:23am-1:08am") #should == 1425
 #puts CountingMinutesI("12:30pm-12:00am") #should == 690
 #puts CountingMinutesI("1:00pm-11:00am") #should == 1320
+#puts CountingMinutesI("12:31pm-12:34pm") #should == 3
 
 
 
