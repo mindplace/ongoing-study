@@ -414,3 +414,104 @@ end
 #puts SwapII("6Hello4 -8World, 7 yes3") # should == "4hELLO6 -8wORLD, 7 YES3"
 #puts SwapII("i love cAke33&") # should == "i LOVE CaKE33&"
 #puts SwapII("123gg))((") # should == "123GG))(("
+
+# Number Search
+# have the function NumberSearch(str) take the str parameter, search for all the 
+# numbers in the string, add them together, then return that final number divided 
+# by the total amount of letters in the string. For example: if str is 
+# "Hello6 9World 2, Nic8e D7ay!" the output should be 2. First if you add up all 
+# the numbers, 6 + 9 + 2 + 8 + 7 you get 32. Then there are 17 letters in the 
+# string. 32 / 17 = 1.882, and the final answer should be rounded to the nearest 
+# whole number, so the answer is 2. Only single digit numbers separated by spaces 
+# will be used throughout the whole string (So this won't ever be the case: 
+# hello44444 world). Each string will also have at least one letter. 
+
+def NumberSearch(str)
+  nums = str.split("").select{|chr| chr.to_i != 0}
+  return 0 if nums.empty?
+  letters = str.downcase.split("").select{|chr| chr =~ /[a-z]/}
+  (nums.map!{|num| num.to_f}.inject(:+) / letters.length.to_f).round
+end
+
+#puts NumberSearch("Hello6 9World 2, Nic8e D7ay!") # should == 2
+#puts NumberSearch("1p2ol5e ** 6") # should == 4
+#puts NumberSearch("No2 3 6Si4r") # should == 3
+
+# Triple Double
+# have the function TripleDouble(num1,num2) take both parameters being passed, 
+# and return 1 if there is a straight triple of a number at any place in num1 
+# and also a straight double of the same number in num2. For example: if num1 
+# equals 451999277 and num2 equals 41177722899, then return 1 because in the 
+# first parameter you have the straight triple 999 and you have a straight 
+# double, 99, of the same number in the second parameter. If this isn't the 
+# case, return 0. 
+
+def TripleDouble(num1,num2)
+  triple = num1.to_s.split("").select{|num| num1.to_s.split("").count(num) > 2}
+  double = num2.to_s.split("").select{|num| num2.to_s.split("").count(num) > 1}
+  return 0 if triple.empty? || double.empty?
+  return 1 if double.map{|item| item = true if triple.include?(item)}.include?(true)
+  0
+end
+
+#puts TripleDouble(465555,5579)
+#puts TripleDouble(451999277,41177722899)
+
+# Bracket Master
+#have the function BracketMatcher(str) take the str parameter being passed and return 1 if the brackets are correctly matched and each one is accounted for. Otherwise return 0. For example: if str is "(hello (world))", then the output should be 1, but if str is "((hello (world))" the the output should be 0 because the brackets do not correctly match up. Only "(" and ")" will be used as brackets. If str contains no brackets return 1. 
+
+
+def BracketMatcher(str)
+  return 0 if str.index(")") < str.index("(")
+  open_count = str.split("").select{|char| char == "("}.length
+  closed_count = str.split("").select{|char| char == ")"}.length
+  return 1 if open_count == closed_count
+  0
+end
+
+
+# String Reduction
+#  have the function StringReduction(str) take the str parameter being passed 
+# and return the smallest number you can get through the following reduction 
+# method. The method is: Only the letters a, b, and c will be given in str and 
+# you must take two different adjacent characters and replace it with the third. 
+# For example "ac" can be replaced with "b" but "aa" cannot be replaced with 
+# anything. This method is done repeatedly until the string cannot be further 
+# reduced, and the length of the resulting string is to be outputted. For 
+# example: if str is "cab", "ca" can be reduced to "b" and you get "bb" 
+# (you can also reduce it to "cc"). The reduction is done so the output should 
+# be 2. If str is "bcab", "bc" reduces to "a", so you have "aab", then "ab" 
+# reduces to "c", and the final string "ac" is reduced to "b" so the output 
+# should be 1. 
+
+def StringReduction(str)
+  return str.split("").length if str.split("").uniq.length == 1
+  
+  while str.split("").uniq.length != 1
+    potentials = {"ab" => "c", "ac" => "b", "ba" => "c", "bc" => "a", "ca" => "b", "cb" => "a"}
+  	new_string = ""
+  	str.split("").each_with_index do |letter, i|
+    	if letter == str[i + 1] 
+      		new_string << letter
+      		next
+    	end
+    	if i == str.length - 1 && (str.split("").length % 2 != 0)
+      		new_string << letter
+      		break
+      elsif i == str.length - 1
+        break
+      else
+        new_string << potentials[letter + str[i + 1]]
+        new_string += str[(i + 2)..-1]
+        break
+    	end
+  	end
+  	str = new_string
+  end
+  str.length
+end
+
+puts StringReduction("abcabc") # should == 2
+puts StringReduction("bcab") # should == 1
+puts StringReduction("abcc") # should == 3
+puts StringReduction("bbbb") # should == 4
