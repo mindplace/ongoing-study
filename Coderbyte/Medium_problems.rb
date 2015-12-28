@@ -458,7 +458,12 @@ end
 #puts TripleDouble(451999277,41177722899)
 
 # Bracket Master
-#have the function BracketMatcher(str) take the str parameter being passed and return 1 if the brackets are correctly matched and each one is accounted for. Otherwise return 0. For example: if str is "(hello (world))", then the output should be 1, but if str is "((hello (world))" the the output should be 0 because the brackets do not correctly match up. Only "(" and ")" will be used as brackets. If str contains no brackets return 1. 
+#have the function BracketMatcher(str) take the str parameter being passed and 
+# return 1 if the brackets are correctly matched and each one is accounted for. 
+# Otherwise return 0. For example: if str is "(hello (world))", then the output 
+# should be 1, but if str is "((hello (world))" the the output should be 0 
+# because the brackets do not correctly match up. Only "(" and ")" will be used 
+# as brackets. If str contains no brackets return 1. 
 
 
 def BracketMatcher(str)
@@ -511,7 +516,131 @@ def StringReduction(str)
   str.length
 end
 
-puts StringReduction("abcabc") # should == 2
-puts StringReduction("bcab") # should == 1
-puts StringReduction("abcc") # should == 3
-puts StringReduction("bbbb") # should == 4
+#puts StringReduction("abcabc") # should == 2
+#puts StringReduction("bcab") # should == 1
+#puts StringReduction("abcc") # should == 3
+#puts StringReduction("bbbb") # should == 4
+
+# Three Five Multiples
+#have the function ThreeFiveMultiples(num) return the sum of all the multiples of 
+# 3 and 5 that are below num. For example: if num is 10, the multiples of 3 and 5 
+# that are below 10 are 3, 5, 6, and 9, and adding them up you get 23, so your 
+# program should return 23. The integer being passed will be between 1 and 100. 
+
+
+def ThreeFiveMultiples(num)
+  multiples = (1..num).to_a.select{|x| x % 3 == 0 || x % 5 == 0}.inject(:+)
+  multiples == nil ? 0 : multiples
+end
+
+# Coin Determiner
+# have the function CoinDeterminer(num) take the input, which will be an integer 
+# ranging from 1 to 250, and return an integer output that will specify the least 
+# number of coins, that when added, equal the input integer. Coins are based on 
+# a system as follows: there are coins representing the integers 1, 5, 7, 9, and 
+# 11. So for example: if num is 16, then the output should be 2 because you can 
+# achieve the number 16 with the coins 9 and 7. If num is 25, then the output 
+# should be 3 because you can achieve 25 with either 11, 9, and 5 coins or with 
+# 9, 9, and 7 coins.
+
+def CoinDeterminer(num)
+  coins = [1,1,1,1,1,1,5,5,5,5,5,7,7,7,7,7,7,9,9,9,9,9,9,11,11,11,11,11,11].reject{|coin| coin > num}
+  
+  return 1 if coins.include?(num)
+  if coins.combination(2).map{|set| set.inject(:+)}.include?(num)
+    return 2
+  elsif coins.combination(3).map{|set| set.inject(:+)}.include?(num)
+    return 3
+  elsif coins.combination(4).map{|set| set.inject(:+)}.include?(num)
+    return 4
+  elsif coins.combination(5).map{|set| set.inject(:+)}.include?(num)
+    return 5
+  end
+end
+
+#puts CoinDe#terminer(6) # should == 2
+#puts CoinDeterminer(16) # should == 2
+#puts CoinDeterminer(25) # should == 3
+#puts CoinDeterminer(5) # should == 1
+
+# Fibonacci Checker
+# check if a given num is a Fibonacci number. 
+
+def FibonacciChecker(num)
+  fibonacci = [1,1]
+  while fibonacci.last < num
+    fibonacci << fibonacci[-1] + fibonacci[-2]
+  end
+  fibonacci.include?(num) ? "yes" : "no"
+end
+
+#puts FibonacciChecker(34) # should == yes
+#puts FibonacciChecker(54) # should == no
+
+# Look Say Sequence
+#
+
+def LookSaySequence(num)
+  collections = []
+  index_end = 0
+  
+	array = num.to_s.split("")
+  array.each_with_index do |x,i|
+    next if i < index_end + 1 unless i == 0
+    index_end = i
+    while array[index_end + 1] == x
+      index_end += 1
+    end
+    collections << (index_end - i) + 1
+    collections << x
+  end
+  collections.flatten.join
+end
+
+#puts LookSaySequence(1211) # should == 111221
+#puts LookSaySequence(2466) # should == 121426
+#puts LookSaySequence(11) # should == 21
+#puts LookSaySequence(3441) # should == 132411
+
+# Distinct List
+# have the function DistinctList(arr) take the array of numbers stored in arr 
+# and determine the total number of duplicate entries. For example if the input 
+# is [1, 2, 2, 2, 3] then your program should output 2 because there are two 
+# duplicates of one of the elements. 
+
+def DistinctList(arr)
+  uniques = arr.uniq
+  arr.length - uniques.length
+end
+
+#puts DistinctList([0,2,2,5,5,5]) # should == 3
+
+# Number Encoding
+# have the function NumberEncoding(str) take the str parameter and encode the 
+# message according to the following rule: encode every letter into its 
+# corresponding numbered position in the alphabet. Symbols and spaces will also 
+# be used in the input. For example: if str is "af5c a#!" then your program 
+# should return 1653 1#!. 
+
+def NumberEncoding(str)
+  letters = {"a" => 1, "b" => 2, "c" => 3, "d" => 4, "e" => 5, 
+    "f" => 6, "g" => 7, "h" => 8, "i" => 9, "j" => 10, "k" => 11,
+    "l" => 12, "m" => 13, "n" => 14, "o" => 15, "p" => 16, "q" => 17,
+    "r" => 18, "s" => 19, "t" => 20, "u" => 21, "v" => 22, "w" => 23,
+    "x" => 24, "y" => 25, "z" => 26}
+  
+  returning = ""
+  str.split("").each do |chr|
+    if chr =~ /[a-z]/
+      returning << letters[chr].to_s
+    else 
+      returning << chr
+    end 
+  end 
+  returning
+end
+
+#puts NumberEncoding("af5c a#!") # should == "1653 1#!"
+
+# Most Free Time
+# have the function MostFreeTime(strArr) read the strArr parameter being passed which will represent a full day and will be filled with events that span from time X to time Y in the day. The format of each event will be hh:mmAM/PM-hh:mmAM/PM. For example, strArr may be ["10:00AM-12:30PM","02:00PM-02:45PM","09:10AM-09:50AM"]. Your program will have to output the longest amount of free time available between the start of your first event and the end of your last event in the format: hh:mm. The start event should be the earliest event in the day and the latest event should be the latest event in the day. The output for the previous input would therefore be 01:30 (with the earliest event in the day starting at 09:10AM and the latest event ending at 02:45PM). The input will contain at least 3 events and the events may be out of order. 
