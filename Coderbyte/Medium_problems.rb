@@ -5,6 +5,8 @@ def PrimeTime(num)
   (2..num).to_a.select{|x| num % x == 0} == [num]     
 end
 
+# ------------------------------------------------------------------------------
+
 # Run Time
 # have the function RunLength(str) take the str parameter being passed and 
 # return a compressed version of the string using the Run-length encoding 
@@ -15,24 +17,26 @@ end
 
 def RunLength(str)
   str = str.split("")
-  new_string = []
+  new_string = ""
   count = 1
   str.each_with_index do |char, i|
     if i > 0
         count += 1 if char == str[i - 1]
     end
     if char != str[i + 1]
-      new_string << count.to_i
+      new_string << count.to_s
       new_string << char
       count = 1
     end
   end
-  new_string.join
+  new_string
 end
 
 #puts RunLength("a") # should == "1a"
 #puts RunLength("abqq") # should == "1a1b2q"
 #puts RunLength("coolthree") # should == "1c2oo1l1t1h1r2e"
+
+# ------------------------------------------------------------------------------
 
 # Prime Mover
 # have the function PrimeMover(num) return the numth prime number. The range 
@@ -60,6 +64,7 @@ end
 #puts PrimeMover(9) # should == 23
 #puts PrimeMover(100) # should == 541
 
+# ------------------------------------------------------------------------------
 
 # Palindrome Two
 # have the function PalindromeTwo(str) take the str parameter being passed 
@@ -73,6 +78,8 @@ def PalindromeTwo(str)
   str = str.downcase.split("").reject{|char| char !~ /[a-z]/}
   str == str.reverse
 end
+
+# ------------------------------------------------------------------------------
 
 # Division
 # have the function Division(num1,num2) take both parameters being passed and 
@@ -91,6 +98,8 @@ def Division(num1,num2)
   mutual = (num1 + num2)
   mutual.select{|num| mutual.count(num) > 1}.sort[-1]
 end
+
+# ------------------------------------------------------------------------------
 
 # String Scramble
 # have the function StringScramble(str1,str2) take both parameters being passed 
@@ -113,6 +122,7 @@ end
 
 # puts StringScramble("h3llko", "hllo") #should == true
 
+# ------------------------------------------------------------------------------
 
 # Arith Geo II
 # have the function ArithGeoII(arr) take the array of numbers stored in arr and 
@@ -155,6 +165,8 @@ end
 #puts ArithGeo([5,10,15,20]) # should == "Arithmetic"
 #puts ArithGeo([2,4,8,16]) # should == "Geometric"
 
+# ------------------------------------------------------------------------------
+
 #Array Addition
 # have the function ArrayAddition(arr) take the array of numbers stored in arr and 
 # return the string true if any combination of numbers in the array can be added up 
@@ -176,6 +188,8 @@ end
 #puts ArrayAddition([4, 6, 23, 10, 1, 3]) #should == true
 #puts ArrayAddition([3,5,-1,8,12]) #should == true
 #puts ArrayAddition([10,20,30,40,100]) # should == true
+
+# ------------------------------------------------------------------------------
 
 # Binary Converter
 # have the function BinaryConverter(str) return the decimal form of the binary 
@@ -207,6 +221,8 @@ def LetterCount(str)
   biggest_repeated_word.empty? ? -1 : (sentence[sentence.index(biggest_repeated_word)] || sentence[sentence.index(biggest_repeated_word.capitalize)])
 end
 
+# ------------------------------------------------------------------------------
+
 # Caesar Cipher
 # take a string and offset num and return the Caesar cipher of the original string.
 
@@ -233,6 +249,8 @@ end
 #puts CaesarCipher("Hello",4) # Should == "Lipps"
 # puts CaesarCipher("Caesar Cipher", 2) # should == "Ecguct Ekrjgt"
 
+# ------------------------------------------------------------------------------
+
 # Simple Mode
 # have the function SimpleMode(arr) take the array of numbers stored in arr and return 
 # the number that appears most frequently (the mode). For example: if arr contains 
@@ -244,6 +262,8 @@ def SimpleMode(arr)
   mode = arr.sort_by{|num| arr.count(num)}.last
   arr.count(mode) > 1 ? mode : -1
 end
+
+# ------------------------------------------------------------------------------
 
 # Consecutive
 # Return the number of items needed to be added to the given array in order to create 
@@ -257,6 +277,8 @@ def Consecutive(arr)
 end
 
 #puts Consecutive([5,10,15]) # should == 8
+
+# ------------------------------------------------------------------------------
 
 # Formatted Division
 # have the function FormattedDivision(num1,num2) take both parameters being passed, divide 
@@ -291,6 +313,7 @@ end
 #puts FormattedDivision(2, 3) # should == 0.6667
 #puts FormattedDivision(123456789, 10000) # should == "12,345.6789"
 
+# ------------------------------------------------------------------------------
 
 # Permutation Step
 # have the function PermutationStep(num) take the num parameter being passed and 
@@ -311,6 +334,8 @@ end
 #puts PermutationStep(11121) # should == 11211
 #puts PermutationStep(41352) # should == 41523
 #puts PermutationStep(8) # should == -1
+
+# ------------------------------------------------------------------------------
 
 #Prime Checker
 # Have the function PrimeChecker return 1 if a permutation of a given num results in one
@@ -334,6 +359,8 @@ end
 #puts PrimeChecker(8) # should == 0
 #puts PrimeChecker(98) # should == 1
 
+# ------------------------------------------------------------------------------
+
 # Dash Insert II
 # have the function DashInsertII(str) insert dashes ('-') between each two odd numbers 
 # and insert asterisks ('*') between each two even numbers in str. For example: if str 
@@ -355,6 +382,8 @@ def DashInsertII(num)
 end
 
 # puts DashInsertII(56647304) # should == 56*6*47-304
+
+# ------------------------------------------------------------------------------
 
 # Swap II
 # have the function SwapII(str) take the str parameter and swap the case of each character. 
@@ -415,6 +444,8 @@ end
 #puts SwapII("i love cAke33&") # should == "i LOVE CaKE33&"
 #puts SwapII("123gg))((") # should == "123GG))(("
 
+# ------------------------------------------------------------------------------
+
 # Number Search
 # have the function NumberSearch(str) take the str parameter, search for all the 
 # numbers in the string, add them together, then return that final number divided 
@@ -437,6 +468,8 @@ end
 #puts NumberSearch("1p2ol5e ** 6") # should == 4
 #puts NumberSearch("No2 3 6Si4r") # should == 3
 
+# ------------------------------------------------------------------------------
+
 # Triple Double
 # have the function TripleDouble(num1,num2) take both parameters being passed, 
 # and return 1 if there is a straight triple of a number at any place in num1 
@@ -457,6 +490,8 @@ end
 #puts TripleDouble(465555,5579)
 #puts TripleDouble(451999277,41177722899)
 
+# ------------------------------------------------------------------------------
+
 # Bracket Master
 #have the function BracketMatcher(str) take the str parameter being passed and 
 # return 1 if the brackets are correctly matched and each one is accounted for. 
@@ -474,6 +509,7 @@ def BracketMatcher(str)
   0
 end
 
+# ------------------------------------------------------------------------------
 
 # String Reduction
 #  have the function StringReduction(str) take the str parameter being passed 
@@ -521,6 +557,8 @@ end
 #puts StringReduction("abcc") # should == 3
 #puts StringReduction("bbbb") # should == 4
 
+# ------------------------------------------------------------------------------
+
 # Three Five Multiples
 #have the function ThreeFiveMultiples(num) return the sum of all the multiples of 
 # 3 and 5 that are below num. For example: if num is 10, the multiples of 3 and 5 
@@ -532,6 +570,8 @@ def ThreeFiveMultiples(num)
   multiples = (1..num).to_a.select{|x| x % 3 == 0 || x % 5 == 0}.inject(:+)
   multiples == nil ? 0 : multiples
 end
+
+# ------------------------------------------------------------------------------
 
 # Coin Determiner
 # have the function CoinDeterminer(num) take the input, which will be an integer 
@@ -563,6 +603,8 @@ end
 #puts CoinDeterminer(25) # should == 3
 #puts CoinDeterminer(5) # should == 1
 
+# ------------------------------------------------------------------------------
+
 # Fibonacci Checker
 # check if a given num is a Fibonacci number. 
 
@@ -577,8 +619,12 @@ end
 #puts FibonacciChecker(34) # should == yes
 #puts FibonacciChecker(54) # should == no
 
+# ------------------------------------------------------------------------------
+
 # Look Say Sequence
-#
+# Have the function review each consecutive sequence of repeated numbers and note
+# how many times a given number is repeated. For example, given 1, the function
+# should return 11; given 11, the function should return 21. 
 
 def LookSaySequence(num)
   collections = []
@@ -602,6 +648,8 @@ end
 #puts LookSaySequence(11) # should == 21
 #puts LookSaySequence(3441) # should == 132411
 
+# ------------------------------------------------------------------------------
+
 # Distinct List
 # have the function DistinctList(arr) take the array of numbers stored in arr 
 # and determine the total number of duplicate entries. For example if the input 
@@ -614,6 +662,8 @@ def DistinctList(arr)
 end
 
 #puts DistinctList([0,2,2,5,5,5]) # should == 3
+
+# ------------------------------------------------------------------------------
 
 # Number Encoding
 # have the function NumberEncoding(str) take the str parameter and encode the 
@@ -641,6 +691,8 @@ def NumberEncoding(str)
 end
 
 #puts NumberEncoding("af5c a#!") # should == "1653 1#!"
+
+# ------------------------------------------------------------------------------
 
 # Most Free Time
 # have the function MostFreeTime(strArr) read the strArr parameter being passed which will represent a full day and will be filled with events that span from time X to time Y in the day. The format of each event will be hh:mmAM/PM-hh:mmAM/PM. For example, strArr may be ["10:00AM-12:30PM","02:00PM-02:45PM","09:10AM-09:50AM"]. Your program will have to output the longest amount of free time available between the start of your first event and the end of your last event in the format: hh:mm. The start event should be the earliest event in the day and the latest event should be the latest event in the day. The output for the previous input would therefore be 01:30 (with the earliest event in the day starting at 09:10AM and the latest event ending at 02:45PM). The input will contain at least 3 events and the events may be out of order. 
