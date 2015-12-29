@@ -36,13 +36,17 @@ def CountingMinutesI(str)
   array.each do |item|
     if array.index(item) == 0 
       item = item.split("").reject{|char| char == ":"}
-      hours = (item.include?("p") ? to_military(item[0..1].join.to_i, "p") : to_military(item[0..1].join.to_i, "a"))
+      hours = (item.include?("p") ? 
+        to_military(item[0..1].join.to_i, "p") : 
+        to_military(item[0..1].join.to_i, "a"))
       minutes = (item[2..3]).join.to_s
       first = (hours + "00").to_i
       first_minutes = minutes
     elsif array.index(item) == 1
       item = item.split("").reject{|char| char == ":"}
-      hours = (item.include?("p") ? to_military(item[0..1].join.to_i, "p") : to_military(item[0..1].join.to_i, "a"))
+      hours = (item.include?("p") ? 
+        to_military(item[0..1].join.to_i, "p") : 
+        to_military(item[0..1].join.to_i, "a"))
       minutes = (item[2..3]).join.to_s
       second = (hours + "00").to_i
       second_minutes = minutes
@@ -89,9 +93,11 @@ def DashInsert(str)
   array.each_with_index do |num, i|
     new_string << num.to_s
     break if i == array.index(array.last)
-    if (num != 0) && (num % 2 != 0) && (array[i + 1] != 0) && (array[i + 1] % 2 != 0)
-      new_string << "-"
-    end
+    new_string << "-" if 
+      (num != 0) && 
+      (num % 2 != 0) && 
+      (array[i + 1] != 0) && 
+      (array[i + 1] % 2 != 0)
   end
   new_string
 end
@@ -228,7 +234,8 @@ def OffLineMinimum(strArr)
   new_array = []
   strArr.each_with_index do |char, i|
     next if i == 0 || char != "E"
-    slice = strArr[0..(i - 1)].map{|bit| bit.to_i if bit.to_i != 0}.reject{|num| new_array.include?(num)}
+    slice = strArr[0..(i - 1)].map{|bit| bit.to_i if bit.to_i != 0}
+    slice = slice.reject{|num| new_array.include?(num)}
     new_array << slice.select{|num| num.class == Fixnum}.sort[0]
   end
   new_array.join(",")
