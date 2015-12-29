@@ -34,5 +34,5 @@ class AboutNil < Neo::Koan
     #    obj == nil
     # Why?
   end
-
+  
 end
