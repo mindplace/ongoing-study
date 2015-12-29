@@ -14,4 +14,4 @@ def fizzbuzz(num)
    end
 end
 
-puts fizzbuzz(30)
+#puts fizzbuzz(30)
