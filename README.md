@@ -1,8 +1,6 @@
 <b><u>mindplace/learning:</b></u> <br />
 My repo of coding challenges solved in the pursuit of learning Ruby. <br />
 <br />
-<br />
-<br />
 <b>Included:</b> <br />
 <br />
 => appAcademy: Problems from appAcademy's [Ruby Basics](http://prepwork.appacademy.io/mini-curriculum/), a great mini-curriculum offered by appAcademy<br /> 
