@@ -218,7 +218,10 @@ def LetterCount(str)
         biggest_repeated_word = word
     end
   end
-  biggest_repeated_word.empty? ? -1 : (sentence[sentence.index(biggest_repeated_word)] || sentence[sentence.index(biggest_repeated_word.capitalize)])
+  biggest_repeated_word.empty? ? 
+  -1 : 
+    (sentence[sentence.index(biggest_repeated_word)] || 
+    sentence[sentence.index(biggest_repeated_word.capitalize)])
 end
 
 # ------------------------------------------------------------------------------
@@ -372,8 +375,12 @@ def DashInsertII(num)
   num.each_with_index do |x, i|
     returning << x
     break if i == num.length - 1
-    if (x.to_i % 2 == 0) && (num[i + 1].to_i % 2 == 0) && (x.to_i != 0) && (num[i + 1].to_i != 0)
-      returning << "*"
+    if (x.to_i % 2 == 0) && 
+      (num[i + 1].to_i % 2 == 0) && 
+      (x.to_i != 0) && 
+      (num[i + 1].to_i != 0)
+      
+        returning << "*"
     elsif (x.to_i % 2 != 0) && (num[i + 1].to_i % 2 != 0) 
       returning << "-"
     end
@@ -510,7 +517,15 @@ def StringReduction(str)
   return str.split("").length if str.split("").uniq.length == 1
   
   while str.split("").uniq.length != 1
-    potentials = {"ab" => "c", "ac" => "b", "ba" => "c", "bc" => "a", "ca" => "b", "cb" => "a"}
+    potentials = {
+      "ab" => "c", 
+      "ac" => "b", 
+      "ba" => "c", 
+      "bc" => "a", 
+      "ca" => "b", 
+      "cb" => "a"
+    }
+    
   	new_string = ""
   	str.split("").each_with_index do |letter, i|
     	if letter == str[i + 1] 
@@ -694,7 +709,17 @@ puts MostFreeTime("12:15PM-02:00PM","09:00AM-12:11PM","02:02PM-04:00PM") # shoul
 # ------------------------------------------------------------------------------
 
 # Overlapping Rectangles
-# have the function OverlappingRectangles(strArr) read the strArr parameter being passed which will represent two rectangles on a Cartesian coordinate plane and will contain 8 coordinates with the first 4 making up rectangle 1 and the last 4 making up rectange 2. It will be in the following format: ["(0,0),(2,2),(2,0),(0,2),(1,0),(1,2),(6,0),(6,2)"] Your program should determine the area of the space where the two rectangles overlap, and then output the number of times this overlapping region can fit into the first rectangle. For the above example, the overlapping region makes up a rectangle of area 2, and the first rectangle (the first 4 coordinates) makes up a rectangle of area 4, so your program should output 2. The coordinates will all be integers. If there's no overlap between the two rectangles return 0. 
+# have the function OverlappingRectangles(strArr) read the strArr parameter being 
+# passed which will represent two rectangles on a Cartesian coordinate plane and 
+# will contain 8 coordinates with the first 4 making up rectangle 1 and the last 4 
+# making up rectange 2. It will be in the following format: 
+# ["(0,0),(2,2),(2,0),(0,2),(1,0),(1,2),(6,0),(6,2)"] Your program should determine 
+# the area of the space where the two rectangles overlap, and then output the number 
+# of times this overlapping region can fit into the first rectangle. For the above 
+# example, the overlapping region makes up a rectangle of area 2, and the first 
+# rectangle (the first 4 coordinates) makes up a rectangle of area 4, so your 
+# program should output 2. The coordinates will all be integers. If there's no 
+# overlap between the two rectangles return 0. 
 
 
 puts OverlappingRectangles("(0,0),(0,-2),(3,0),(3,-2),(2,-1),(3,-1),(2,3),(3,3)") 
