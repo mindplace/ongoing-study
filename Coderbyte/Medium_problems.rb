@@ -492,25 +492,6 @@ end
 
 # ------------------------------------------------------------------------------
 
-# Bracket Master
-#have the function BracketMatcher(str) take the str parameter being passed and 
-# return 1 if the brackets are correctly matched and each one is accounted for. 
-# Otherwise return 0. For example: if str is "(hello (world))", then the output 
-# should be 1, but if str is "((hello (world))" the the output should be 0 
-# because the brackets do not correctly match up. Only "(" and ")" will be used 
-# as brackets. If str contains no brackets return 1. 
-
-
-def BracketMatcher(str)
-  return 0 if str.index(")") < str.index("(")
-  open_count = str.split("").select{|char| char == "("}.length
-  closed_count = str.split("").select{|char| char == ")"}.length
-  return 1 if open_count == closed_count
-  0
-end
-
-# ------------------------------------------------------------------------------
-
 # String Reduction
 #  have the function StringReduction(str) take the str parameter being passed 
 # and return the smallest number you can get through the following reduction 
@@ -695,4 +676,55 @@ end
 # ------------------------------------------------------------------------------
 
 # Most Free Time
-# have the function MostFreeTime(strArr) read the strArr parameter being passed which will represent a full day and will be filled with events that span from time X to time Y in the day. The format of each event will be hh:mmAM/PM-hh:mmAM/PM. For example, strArr may be ["10:00AM-12:30PM","02:00PM-02:45PM","09:10AM-09:50AM"]. Your program will have to output the longest amount of free time available between the start of your first event and the end of your last event in the format: hh:mm. The start event should be the earliest event in the day and the latest event should be the latest event in the day. The output for the previous input would therefore be 01:30 (with the earliest event in the day starting at 09:10AM and the latest event ending at 02:45PM). The input will contain at least 3 events and the events may be out of order. 
+# have the function MostFreeTime(strArr) read the strArr parameter being passed 
+# which will represent a full day and will be filled with events that span from 
+# time X to time Y in the day. The format of each event will be hh:mmAM/PM-hh:mmAM/PM. 
+# For example, strArr may be ["10:00AM-12:30PM","02:00PM-02:45PM","09:10AM-09:50AM"]. 
+# Your program will have to output the longest amount of free time available between 
+# the start of your first event and the end of your last event in the format: hh:mm. 
+# The start event should be the earliest event in the day and the latest event 
+# should be the latest event in the day. The output for the previous input would 
+# therefore be 01:30 (with the earliest event in the day starting at 09:10AM and the 
+# latest event ending at 02:45PM). The input will contain at least 3 events and the 
+# events may be out of order. 
+
+
+puts MostFreeTime("12:15PM-02:00PM","09:00AM-10:00AM","10:30AM-12:00PM") # should == "00:30"
+puts MostFreeTime("12:15PM-02:00PM","09:00AM-12:11PM","02:02PM-04:00PM") # should == "00:04"
+# ------------------------------------------------------------------------------
+
+# Overlapping Rectangles
+# have the function OverlappingRectangles(strArr) read the strArr parameter being passed which will represent two rectangles on a Cartesian coordinate plane and will contain 8 coordinates with the first 4 making up rectangle 1 and the last 4 making up rectange 2. It will be in the following format: ["(0,0),(2,2),(2,0),(0,2),(1,0),(1,2),(6,0),(6,2)"] Your program should determine the area of the space where the two rectangles overlap, and then output the number of times this overlapping region can fit into the first rectangle. For the above example, the overlapping region makes up a rectangle of area 2, and the first rectangle (the first 4 coordinates) makes up a rectangle of area 4, so your program should output 2. The coordinates will all be integers. If there's no overlap between the two rectangles return 0. 
+
+
+puts OverlappingRectangles("(0,0),(0,-2),(3,0),(3,-2),(2,-1),(3,-1),(2,3),(3,3)") 
+# should == 6
+puts OverlappingRectangles("(0,0),(5,0),(0,2),(5,2),(2,1),(5,1),(2,-1),(5,-1)")
+# should == 3
+# ------------------------------------------------------------------------------
+
+# Bracket Master
+# have the function BracketMatcher(str) take the str parameter being passed and 
+# return 1 if the brackets are correctly matched and each one is accounted for. 
+# Otherwise return 0. For example: if str is "(hello (world))", then the output 
+# should be 1, but if str is "((hello (world))" the the output should be 0 
+# because the brackets do not correctly match up. Only "(" and ")" will be used 
+# as brackets. If str contains no brackets return 1. 
+
+
+def BracketMatcher(str)
+  return 0 if str.index(")") < str.index("(")
+  open_count = str.split("").select{|char| char == "("}.length
+  closed_count = str.split("").select{|char| char == ")"}.length
+  return 1 if open_count == closed_count
+  0
+end
+
+# ------------------------------------------------------------------------------
+
+# Multiple Brackets
+# have the function MultipleBrackets(str) take the str parameter being passed and return 1 #ofBrackets if the brackets are correctly matched and each one is accounted for. Otherwise return 0. For example: if str is "(hello [world])(!)", then the output should be 1 3 because all the brackets are matched and there are 3 pairs of brackets, but if str is "((hello [world])" the the output should be 0 because the brackets do not correctly match up. Only "(", ")", "[", and "]" will be used as brackets. If str contains no brackets return 1. 
+
+
+puts MultipleBrackets("(coder)[byte)]") # should == 0
+puts MultipleBrackets("(c([od]er)) b(yt[e])") # should == 1

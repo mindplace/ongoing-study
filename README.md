@@ -17,4 +17,5 @@ My repo of coding challenges solved in the pursuit of learning Ruby. <br />
 => [Test First Ruby](http://testfirst.org/learn_ruby) challenges with my solutions.
 <br />
 => [Ruby challenge problems from Viking Code School's Prep Work](http://www.vikingcodeschool.com/web-markup-and-coding/level-up-your-ruby-judo)
-
+<br />
+=> [Neo Koans](http://www.rubykoans.com/) files for Neo Koans Ruby course. 
