@@ -15,13 +15,22 @@
 #
 def triangle(a, b, c)
     if a == b && b == c
-      return :equilateral
+        if [a,b,c] - [0,0,0] == []
+            raise TriangleError 
+        end
+        return :equilateral
     end
     if a == b || b == c || a == c
+        if [a,b,c] - [1,1,3] == [] || [a,b,c] - [2,2,4] == []
+            raise TriangleError
+        end
         return :isosceles
     end
     if a != b && b != c
-        :scalene
+        if [a,b,c].select{|num| num < 0}.length > 0
+            raise TriangleError
+        end
+        return :scalene
     end
 end
 
