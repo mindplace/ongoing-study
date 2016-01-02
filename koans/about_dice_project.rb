@@ -9,7 +9,7 @@ class DiceSet
   
   def roll(num)
     returning = []
-    num.times{returning << rand(7)}
+    num.times{returning << rand(1..6)}
     @dice = returning
   end
   
