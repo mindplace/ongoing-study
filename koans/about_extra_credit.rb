@@ -44,7 +44,8 @@ class GreedGame
         score is dropped to zero. If their score on throw #2 results in 
         some scoring and some non-scoring dice, they can choose again
         to throw the non-scoring dice for the chance to add to their
-        round score, under the same caveat as before.
+        round score, under the same caveat as before, as long as they have 
+        at least 2 die to throw.
         
         Example:
         - Player A's first throw is [3, 1, 5, 4, 3].
@@ -92,7 +93,11 @@ class GreedGame
        welcome
        puts "Shall we look at the rules? (yes or no)"
        answer = gets.chomp.downcase
-       answer == "yes" ? rules : "Ok, here we go!"
+       if answer == "yes"  
+           rules 
+       else
+           puts "Ok, here we go!"
+       end
        
        # user gets added to the game
        user = UserPlayer.new
@@ -132,47 +137,66 @@ class GamePlay < GreedGame
      
     def greedy(player, set)
         
-                
-    end
-    
-    def can_roll_again(set)
-        triplet = set.select{|x| set.count(x) > 2}
-        triplet_indexes = []
-        set.each_with_index do |num, i|
-            triplet_indexes << i if triplet.include?(num)
-        end
-        while triplet_indexes.length > 3 
-            triplet_indexes.delete(triplet_indexes.last)
-        end
-        triplet_indexes.each do |index|
-            set[index] = nil
-        end
-        set = set.compact
-        set = set.reject{|num| num == 1 || num == 5}
-        set.empty? ? nil : set
     end
     
     def round(player)
         player_set = DiceSet.new
-        times_rolled = 0
         player_roll = player_set.roll(5)
         puts "#{player} rolls #{player_roll.join(", ")}"
-        player_score = player_set.score
+        times_rolled = 1
+        player_score = player_set.score[0]
+        last_roll_score = player_score
         puts "#{player}'s score is #{player_score}"
-            if can_roll_again(player_roll) == nil && times_rolled == 0
-             puts "#{player} rolled hot dice! #{player.capitalize} can roll again!"
-             greedy(player, player_roll)
-             times_rolled += 1
-            elsif 
-                while times_rolled < $chances_total
-                    if can_roll_again(player_roll).length == player_roll.length
-                        player_score = 0
-                        puts ""
-                        break
-                    end
-                end
+        
+        # if it's the first roll and player didn't have non-scoring dice,
+        # player has hot dice and can roll again without fear of losing overall score
+        if  times_rolled == 1 && player_set.score[1] == 0
+            puts "#{player} rolled hot dice! #{player} can roll again!"
+            new_set = DiceSet.new
+            new_roll = new_set.roll(5)
+            puts "#{player} now rolls #{new_roll.join(", ")}"
+            new_score = new_set.score[0] + player_score
+            times_rolled += 1
+            puts "#{player}'s score is now #{new_score} after #{times_rolled} rolls"
+        # if it's first roll and player didn't get any scoring dice,
+        # player can roll again for free
+        elsif times_rolled == 1 && player_set.score[0] == 0
+            puts "Since #{player}'s score is 0 on their first roll, they can roll again."
+            player_set = DiceSet.new
+            player_roll = player_set.roll(5)
+            puts "#{player} now rolls #{player_roll.join(", ")}"
+            player_score = player_set.score[0]
+            last_roll_score = player_score
+            times_rolled += 1
+            if player_score == 0
+                puts "Round 2 didn't work out for #{player}! Moving on!"
+            else
+                puts "#{player}'s score is now #{player_score} after #{times_rolled} rolls"
             end
-            
+        end
+
+        while (times_rolled < $chances_total) && (last_roll_score != 0) && (player_set.score[1] > 1)
+            puts "#{player} has the option to roll again..."
+            choices = ["yes", "no"]
+            decision = choices.sample
+            dice_number = player_set.score[1]
+            if decision == "yes"
+                puts "#{player} decided to roll again!"
+                player_score = last_roll_score
+                player_set = DiceSet.new
+                player_roll = player_set.roll(dice_number)
+                puts "#{player} now rolls #{player_roll.join(", ")}"
+                player_score = player_set.score[0]
+                if player_score == 0
+                    puts "Oh no! #{player} didn't roll any scoring dice!"
+                    puts "#{player}'s score for the round is 0!"
+                elsif 
+                times_rolled += 1
+                puts "#{player}'s score is now #{player_score} after #{times_rolled} rolls"
+            else
+                puts "#{player} has decided not to be greedy, and won't be rolling again."
+            end
+        end
         [player, player_score]
     end
     
@@ -322,26 +346,32 @@ class DiceSet < GamePlay
         if dice.include?(1)
             amount = dice.select{|num| num == 1}.length
             result += amount * 100
+            dice = dice.reject{|num| num == 1}
             if dice.include?(5)
                 amount = dice.select{|num| num == 5}.length
                 result += amount * 50
+                dice = dice.reject{|num| num == 5}
             end
         elsif dice.include?(5)
             amount = dice.select{|num| num == 5}.length
             result += amount * 50
+            dice = dice.reject{|num| num == 5}
         end
     elsif dice.include?(1)
         amount = dice.select{|num| num == 1}.length
         result += amount * 100
+        dice = dice.reject{|num| num == 1}
         if dice.include?(5)
             amount = dice.select{|num| num == 5}.length
             result += amount * 50
+            dice = dice.reject{|num| num == 5}
         end
     elsif dice.include?(5)
         amount = dice.select{|num| num == 5}.length
         result += amount * 50
+        dice = dice.reject{|num| num == 5}
     end
-    result
+    [result, dice.length]
   end
 end
 
