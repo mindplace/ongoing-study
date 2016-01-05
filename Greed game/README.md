@@ -1,7 +1,6 @@
-<br/>
 <b>Here we are, a functioning Greed dice game!</b><br/>
 <br/>
-<img src="http://warpandwoof.org/wp-content/uploads/2013/08/greed-Donald-Duck.jpg" alt="greedy duck...">
+&emsp;<img src="http://warpandwoof.org/wp-content/uploads/2013/08/greed-Donald-Duck.jpg" alt="greedy duck..."><br/>
 <br/>
 This was an extra credit project from [Ruby Koans](https://github.com/mindplace/learning/tree/master/koans). 
 Along the way I learned 
