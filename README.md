@@ -18,3 +18,4 @@ My repo of coding challenges solved in the pursuit of learning Ruby. <br />
 => [Ruby challenge problems from Viking Code School's Prep Work](http://www.vikingcodeschool.com/web-markup-and-coding/level-up-your-ruby-judo)
 <br />
 => [Neo Koans](http://www.rubykoans.com/) files for Neo Koans Ruby course. 
+=> Greed game! Extra credit from the [Neo Koans](http://www.rubykoans.com/) course. More info in its [ReadMe](https://github.com/mindplace/learning/tree/master/Greed%20game).
