@@ -263,6 +263,8 @@ end
 # Even though I managed to create a sieve of Eratosthenes as part of
 # my solution, it doesn't solve the problem fast enough. There's an element
 # that's missing.
+# Update - figured it out! I made the while loop break if the square of i was
+# greater than the length of the range. Not seeing it before feels so silly. 
 
 def get_range(max)
     range = [0, 0, 2]
@@ -278,16 +280,18 @@ def sum_of_primes(max)
     i = range[3]
     while true
         (i*i).step(max, i) do |num|
-            puts num
-            puts range.join(",")
+            #puts "i is #{i}, num is #{num}"
+            #puts range.join(",")
             range[num] = 0
         end
         i = range.find{|number| (number > i)}
-        break if i == nil
+        break if i*i > (range.length)
     end
-    puts "primes are #{range.select{|num| num > 0}.join(",")}"
+    #puts "primes are #{range.select{|num| num > 0}.join(",")}"
     puts range.inject(:+)
     puts (Time.now - now)
 end
 
-sum_of_primes(20)
+#puts sum_of_primes(100) # should == 1060
+#puts sum_of_primes(1000) # should == 76,127
+puts sum_of_primes(2000000) # should == 142913828922
