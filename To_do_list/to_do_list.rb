@@ -1,19 +1,22 @@
-def get_number_of_items
-    puts "How many things do you have to do today?" 
-    number_of_items = gets.chomp.to_i
-    while number_of_items.to_i == 0 
-        puts "That’s not a number. Please tell me how many things you have to do today." 
-        number_of_items = gets.chomp.to_i
-    end
-    number_of_items
-end
+# To do list
+# 
+# This program prompts the user to enter each of the
+# things they have to do today. Then it offers to save 
+# the list for them in a new .txt file.
 
-def get_the_items(number_of_items)
+def get_the_items
     to_do_list = []
-    number_of_items.times do |item|
-        puts "Got it."
+    puts "Your to-do list!"
+    puts "Enter each item. When you've put in your last item,"
+    puts "press enter on an empty line to finish."
+    puts "Press enter to get started."
+    gets
+    while true
         puts "Please enter a task."
-        to_do_list << gets.chomp
+        task = gets.chomp
+        break if task.empty?
+        to_do_list << task
+        puts "Got it."
     end
     to_do_list
 end
@@ -45,8 +48,7 @@ def push_to_file(to_do_list)
 end
 
 def create_to_do_list
-    number_of_items = get_number_of_items
-    to_do_list = get_the_items(number_of_items)
+    to_do_list = get_the_items
     puts "Would you like to save your list in a file, yes or no?"
     answer = gets.chomp.downcase
     if answer == "yes"
