@@ -284,7 +284,8 @@ def sum_of_primes(max)
             #puts range.join(",")
             range[num] = 0
         end
-        i = range.find{|number| (number > i)}
+        #i = range.find{|number| number > i} #regular search, time = 0.96
+        i = range.bsearch {|number| (number > i)} #bsearch, time = 0.64
         break if i*i > (range.length)
     end
     #puts "primes are #{range.select{|num| num > 0}.join(",")}"
