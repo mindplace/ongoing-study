@@ -44,7 +44,7 @@ class RPNCalculator
     string_stack.map{|x| x.to_i == 0 ? x.to_sym : x.to_i}
   end
   
-  def update_stack(symbol)
+  def evaluate_stack(symbol)
     if symbol == :+
       plus
     elsif symbol == :-
@@ -67,17 +67,44 @@ class RPNCalculator
         next unless symbol.is_a?(Symbol)
         @stack << first_num.to_i
         @stack << second_num.to_i
-        update_stack(symbol)
+        evaluate_stack(symbol)
         symbol_index = updating_stack.index(symbol)
         updating_stack[symbol_index - 2..symbol_index] = @value
-        
-        if i = string_stack.length - 1
-          string_stack = updating_stack
-        end
+        break
       end
+      string_stack = updating_stack
     end
     string_stack[0]
   end
+  
+  if __FILE__ == $PROGRAM_NAME
+  def input
+    puts "Please enter input one operand or operator at a time."
+    puts "Press enter on an empty line and calculator will run."
+    puts "Please begin to enter items now."
+    string = ""
+    while true
+      item = gets.chomp
+      break if item.empty?
+      string << item + " "
+    end
+    puts evaluate(string)
+  end
+  
+  def file
+    File.foreach(ARGV[0]) do |line|
+      puts evaluate(line)
+    end 
+  end
+  
+  def run_from_console
+    choice = ARGV
+    choice.empty? ? input : file
+  end 
+  end
 end
 
-
+if __FILE__ == $PROGRAM_NAME
+  calc = RPNCalculator.new
+  calc.run_from_console
+end
