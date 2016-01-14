@@ -52,37 +52,29 @@ def largest_prime_factor(number)
     prime.last
 end
 
-#puts largest_prime_factor(13195)
-#puts largest_prime_factor(600_851_475_143)
-
 # 4. A palindromic number reads the same both ways. 
 # The largest palindrome made from the product of two 2-digit numbers 
 # is 9009 = 91 × 99.
 # Find the largest palindrome made from the product of two 3-digit numbers.
 
 def factors(array)
-    multiples = []
-    array.each_with_index do |num, i|
-        while i < array.length
-            multiples << num * array[i]
-            i += 1
-        end
-    end
-    multiples
+    array.combination(2).to_a.map{|set| set.inject(:*)}
 end
-            
+  
+def palindromes
+    (998001.downto(10000)).to_a.select{|x| x == x.to_s.reverse.to_i}
+end
+
 def palindromic
-    palindrome_array = (998001.downto(10000)).to_a.select{|x| x == x.to_s.reverse.to_i}
     palindrome = []
-    palindrome_array.each do |i|
-        factor_array = (100..999).to_a.select{|x| i % x == 0}
-        palindrome << i if factors(factor_array).include?(i)
+    palindromes.each do |item|
+        factor_array = (999.downto(100)).to_a.select{|x| item % x == 0}
+        palindrome << item if factors(factor_array).include?(item)
         break if palindrome.length == 1
     end
     palindrome[0]
 end
-        
-# puts palindromic
+
 
 # 5. 2520 is the smallest number that can be divided by 
 # each of the numbers from 1 to 10 without any remainder.
@@ -90,9 +82,16 @@ end
 # divisible by all of the numbers from 1 to 20?
 
 def least_common(a, b)
-    lcm = a
-    while (lcm % b != 0)
-        lcm += a
+    if a > b 
+        lcm = a
+        until (lcm % b == 0)
+            lcm += a
+        end
+    else
+        lcm = b 
+        until (lcm % a == 0)
+            lcm += b 
+        end
     end
     lcm
 end
@@ -115,8 +114,6 @@ def smallest_multiple
     next_branch[0]
 end
 
-# puts smallest_multiple
-
 # 6. The sum of the squares of the first ten natural numbers is,
 #   (1**2 + 2**2 + ... + 10**2) = 385
 # The square of the sum of the first ten natural numbers is,
@@ -126,23 +123,22 @@ end
 # Find the difference between the sum of the squares of the 
 # first one hundred natural numbers and the square of the sum.
 
-def sum_square_diff
-    range = (1..100).to_a
-    square = range.inject(:+) ** 2
+def sum_square_diff(max)
+    range = (1..max).to_a
     sum = range.map{|i| i ** 2}.inject(:+)
+    square = range.inject(:+) ** 2
     square - sum
 end
 
-# puts sum_square_diff
 
 # 7. By listing the first six prime numbers: 2, 3, 5, 7, 11, and 13, 
 # we can see that the 6th prime is 13.
 # What is the 10 001st prime number?
 
 
-def find_prime(max, number)
-    now = Time.now
+def find_prime(number)
     range = [0, 0, 2]
+    max = number * 30
     (3..max).each do |num|
         num.odd? ? (range << num) : (range << 0)
     end
@@ -152,16 +148,11 @@ def find_prime(max, number)
             range[num] = 0
         end
         i = range.find{|num| (num > i)}
-        break if i == nil
+        break if i*i > range.length
     end
     range = range.reject{|num| num == 0}
-    puts range.join(",")
-    puts range.length
-    puts range[number - 1]
-    puts "took #{Time.now - now} seconds"
+    range[number - 1]
 end
-
-#find_prime(105000, 10001)
 
 
 # 8. Largest Product in a Series
@@ -190,18 +181,17 @@ end
 # What is the value of this product?
 
 
-def product(num)
+def product(num, digits)
     num = num.to_s.split("").map{|i| i.to_i}
     products = []
     num.each_with_index do |x, i|
         break if i > (num.length - 13)
-        set = num[i..(i + 12)]
+        set = num[i..(i + (digits - 1))]
         products << set.inject(:*)
     end
-    puts products.max
+    products.max
 end
-# number = 7316717653133062491922511967442657474235534919493496983520312774506326239578318016984801869478851843858615607891129494954595017379583319528532088055111254069874715852386305071569329096329522744304355766896648950445244523161731856403098711121722383113622298934233803081353362766142828064444866452387493035890729629049156044077239071381051585930796086670172427121883998797908792274921901699720888093776657273330010533678812202354218097512545405947522435258490771167055601360483958644670632441572215539753697817977846174064955149290862569321978468622482839722413756570560574902614079729686524145351004748216637048440319989000889524345065854122758866688116427171479924442928230863465674813919123162824586178664583591245665294765456828489128831426076900422421902267105562632111110937054421750694165896040807198403850962455444362981230987879927244284909188845801561660979191338754992005240636899125607176060588611646710940507754100225698315520005593572972571636269561882670428252483600823257530420752963450
-# product(number)
+
 
 # 9. Special Pythagorean Triplet
 # A Pythagorean triplet is a set of three natural numbers, a < b < c, for which,
@@ -220,9 +210,23 @@ def square_root(num)
     (1..(num / 2)).to_a.select{|x| x ** 2 == num}[0]
 end
 
+def find_and_sum_square_roots(max, pythagoreans)
+    result = 0
+    pythagoreans.each do |combo|
+        a = square_root(combo[0])
+        b = square_root(combo[1])
+        c = square_root(combo[2])
+        if (a + b + c) == max
+            result = (a * b * c)
+            break
+        end
+    end
+    result 
+end
+
 def pythagoreans
     potentials = square_nums
-    pythagorean = []
+    pythagoreans = []
     
     potentials.each_with_index do |a_sq, i1|
         i2 = i1 + 1
@@ -232,29 +236,16 @@ def pythagoreans
             while i3 < (potentials.length)
                 c_sq = potentials[i3]
                 if a_sq + b_sq == c_sq
-                    pythagorean << [a_sq, b_sq, c_sq]
+                    pythagoreans << [a_sq, b_sq, c_sq]
                 end
                 i3 += 1
             end
             i2 += 1
         end
     end
-    pythagorean
+    find_and_sum_square_roots(1000, pythagoreans)
 end
 
-def adding_up_square_roots(pythagoreans)
-    pythagoreans.each do |combo|
-        a = square_root(combo[0])
-        b = square_root(combo[1])
-        c = square_root(combo[2])
-        if (a + b + c) == 1000
-            puts (a * b * c)
-            break
-        end
-    end
-end
-
-#adding_up_square_roots(pythagoreans)
 
 # 10. Prime summation
 # The sum of the primes below 10 is 2 + 3 + 5 + 7 = 17.
@@ -275,24 +266,16 @@ def get_range(max)
 end
 
 def sum_of_primes(max)
-    now = Time.now
     range = get_range(max)
     i = range[3]
     while true
         (i*i).step(max, i) do |num|
-            #puts "i is #{i}, num is #{num}"
-            #puts range.join(",")
             range[num] = 0
         end
-        #i = range.find{|number| number > i} #regular search, time = 0.96
-        i = range.bsearch {|number| (number > i)} #bsearch, time = 0.64
-        break if i*i > (range.length)
-    end
-    #puts "primes are #{range.select{|num| num > 0}.join(",")}"
-    puts range.inject(:+)
-    puts (Time.now - now)
-end
 
-#puts sum_of_primes(100) # should == 1060
-#puts sum_of_primes(1000) # should == 76,127
-puts sum_of_primes(2000000) # should == 142913828922
+        i = range.find{|item| (item > i)} #regular search, time = 0.96
+        #i = range.bsearch {|item| (item > i)} #bsearch, time = 0.64
+        break if i*i > range.length
+    end
+    range.inject(:+)
+end
