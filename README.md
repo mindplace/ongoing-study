@@ -17,6 +17,7 @@ adding them here when I have time.
 => [Neo Koans](http://www.rubykoans.com/) files for Neo Koans Ruby course. 
 <br />
 => Project Euler problems: access the problems [here](https://projecteuler.net/archives) and solutions [here](https://code.google.com/p/projecteuler-solutions/wiki/ProjectEulerSolutions).
+Started writing rspecs for these problems in order to practice my test-making skills. 
 <br />
 => Tamagochi pet game: a game I mapped out to build, where the user has a virtual Tamagochi pet which can play with the user and accept
 other sorts of interactions, which alter its state. 
