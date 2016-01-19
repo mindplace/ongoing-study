@@ -57,7 +57,7 @@ Today's to-do list:\n\n"
         get_the_items
         puts "Would you like to save your list in a file, yes or no?"
         answer = gets.chomp.downcase
-        if answer == "yes"
+        if answer.include?("y")
             push_to_file
         else
             put_list
