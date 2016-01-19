@@ -4,14 +4,12 @@
 # things they have to do today. Then it offers to save 
 # the list for them in a new .txt file.
 class ToDoList
+    attr_reader :list
+    
     def initialize
         @list = []
     end
-    
-    def list
-        @list
-    end
-    
+
     def get_the_items
         puts "Your to-do list!"
         puts "Enter each item. When you've put in your last item,"
@@ -66,6 +64,7 @@ Today's to-do list:\n\n"
     end
 end
 
-
-list = ToDoList.new
-list.create_to_do_list
+if __FILE__ == $PROGRAM_NAME
+    list = ToDoList.new
+    list.create_to_do_list
+end
