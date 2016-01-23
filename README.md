@@ -19,6 +19,8 @@ words before the game can start.
 <br />
 => [Neo Koans](http://www.rubykoans.com/) files for Neo Koans Ruby course. 
 <br />
+=> Mastermind! A fully playable Mastermind game. 
+<br />
 => Project Euler problems: access the problems [here](https://projecteuler.net/archives) and solutions [here](https://code.google.com/p/projecteuler-solutions/wiki/ProjectEulerSolutions).
 Started writing rspecs for these problems in order to practice my test-making skills. 
 <br />
