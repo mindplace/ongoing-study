@@ -14,6 +14,11 @@ adding them here when I have time.
 <br />
 => Greed game! Extra credit from the [Neo Koans](http://www.rubykoans.com/) course. More info in its [ReadMe](https://github.com/mindplace/learning/tree/master/Greed%20game).
 <br />
+=> Hangman game! Was lots of fun to write and test. Doesn't graphically show a stick figure being hanged, but it does
+let the user choose to be the word guesser or make the computer guess a word the user thinks of. The only issue
+is that when the computer is initially booting up its dictionary, it takes it about 2 minutes to parse all the 
+words before the game can start. 
+<br />
 => [Neo Koans](http://www.rubykoans.com/) files for Neo Koans Ruby course. 
 <br />
 => Project Euler problems: access the problems [here](https://projecteuler.net/archives) and solutions [here](https://code.google.com/p/projecteuler-solutions/wiki/ProjectEulerSolutions).
