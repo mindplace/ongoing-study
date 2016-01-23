@@ -27,6 +27,8 @@ other sorts of interactions, which alter its state.
 <br />
 => [Test First Ruby](http://testfirst.org/learn_ruby) challenges with my solutions.
 <br />
+=> TicTacToe! Playable in the console. Play against the computer. 
+<br />
 => To do list: one of the first little programs I've written, recently refactored to add a feature where the user can choose to save their
 to-do list in a .txt file.
 <br /> 
