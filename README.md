@@ -5,9 +5,7 @@ My repo of coding challenges solved in the pursuit of learning Ruby. <br />
 => appAcademy: Problems from appAcademy's [Ruby Basics](http://prepwork.appacademy.io/mini-curriculum/), a great mini-curriculum offered by appAcademy<br /> 
 &emsp; to help their applicants dive more deeply into Ruby. Some problems from appAcademy's pre-course prepwork. 
 <br />
-=> My [Coderbyte](https://coderbyte.com/) solutions for easy and medium difficulty levels. Excluded many easy-level problems because they<br /> 
-&emsp; were too simple, and excluded hard-level problems because I couldn't afford the premium membership required<br /> 
-&emsp; to view them.
+=> My [Coderbyte](https://coderbyte.com/) solutions for various easy and medium difficulty level problems. 
 <br />
 => FizzBuzz and more: currently just holds [RubyQuiz #126](http://rubyquiz.com/quiz126.html):FizzBuzz, but I think I'm going to be doing more RubyQuiz things and 
 adding them here when I have time. 
