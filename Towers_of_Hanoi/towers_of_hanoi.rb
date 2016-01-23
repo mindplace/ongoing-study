@@ -1,23 +1,12 @@
 # Towers of Hanoi
-# 
-# The game runs from the console! Just run this file to initiate it.
-# When reading the code, I recommend starting from the last methods
-# as those map out how the rest of the methods interact and call on them. 
+# http://en.wikipedia.org/wiki/Towers_of_hanoi
 
 class TowersOfHanoi
-  attr_reader :towers
+  attr_reader :towers, :moves_count
   
   def initialize
     @towers = [[3, 2, 1], [], []]
     @moves_count = 0
-  end
-
-  def towers
-    @towers
-  end
-  
-  def moves_count
-    @moves_count
   end
   
   def rules
@@ -33,17 +22,13 @@ class TowersOfHanoi
         2. Each move consists of taking the upper disk from one of the stacks 
            and placing it on top of another stack i.e. a disk can only be moved 
            if it is the uppermost disk on a stack.
-        3. No disk may be placed on top of a smaller disk.
-    "
+        3. No disk may be placed on top of a smaller disk."
   end
   
   def offer_rules
-    puts "Want to see the rules?"
-    puts "(yes/no)"
-    user_answer = gets.chomp
-    rules if user_answer == "yes"
-    puts "Press enter to play!"
-    gets
+    puts "Want to see the rules? (yes/no)"
+    answer = gets.chomp
+    rules if answer.include?("y")
   end
   
   def get_sets_for_rendering
@@ -71,31 +56,18 @@ class TowersOfHanoi
     puts " #{sets[0][0]} | #{sets[1][0]} | #{sets[2][0]}"
   end
   
-  ####
-  
-  def desired_move
-    choice = disk
-    disk = choice[1]
-    from_tower = choice[0]
-    [disk, from_tower, to_tower]
-  end
-  
-  def move(disk, from_tower, to_tower)
-    from_tower.delete(disk)
-    to_tower << disk
-  end
-
   def locate(disk)
     if towers[0].include?(disk)
-      @towers[0]
+      from_tower = @towers[0]
     elsif towers[1].include?(disk)
-      @towers[1]
+      from_tower = @towers[1]
     else
-      @towers[2]
+      from_tower = @towers[2]
     end
+    from_tower
   end
   
-  def disk
+  def get_disk
     puts "Which disk would you like to move?"
     disk = gets.chomp.to_i
     
@@ -109,45 +81,56 @@ class TowersOfHanoi
         disk = gets.chomp.to_i
       end
     end
-    
-    from_tower = locate(disk)
-    
-    while from_tower.last != disk
-      puts "Can't take a disk if it's not at the top!"
-      puts "Choose another disk to move."
-      disk = gets.chomp.to_i
-      from_tower = locate(disk)
-    end
-    [from_tower, disk]
+    disk
   end
   
-  def to_tower 
+  def get_to_tower 
     to_tower = nil
     while to_tower == nil
       puts "To which tower?"
       to_tower = gets.chomp.to_i
       to_tower = towers[to_tower - 1]
-      break if to_tower != nil
-      puts "There's no such tower, choose another."
+      break unless to_tower.nil?
+      puts "There's no such tower, choose another." 
     end
     to_tower
   end
   
-  def valid_move?(disk, to_tower)
-    comparator = to_tower.last.to_i
-    comparator < disk && comparator > 0 ? false : true
+  def move(disk=nil, from_tower, to_tower)
+    if disk == nil && to_tower.class == Fixnum
+      disk = @towers[from_tower].pop
+      @towers[to_tower] << disk
+    else
+      to_tower << disk
+      from_tower.delete(disk)
+    end
+  end
+  
+  def valid_move?(disk=nil, from_tower, to_tower)
+    if disk.nil? && from_tower.class == Fixnum
+      disk = towers[from_tower].pop
+      return false if disk.nil?
+      next_disk = towers[to_tower].last
+    else
+      next_disk = to_tower.last
+    end
+    
+    if next_disk.nil? || next_disk > disk
+      true 
+    elsif disk > next_disk
+      false 
+    end
   end
   
   def turn_invalid_move_valid(disk)
     user_choice = next_disk_is_smaller_error(disk)
-    user_choice == 1 ? 1 : to_tower
+    user_choice == 1 ? 1 : get_to_tower
   end
   
   def next_disk_is_smaller_error(selection)
-    puts "Can't move the disk there, the next disk at that tower"
-    puts "is smaller than the disk you selected."
-    puts "You can choose another disk or choose another tower"
-    puts "for disk ##{selection}."
+    puts "Can't move the disk there, the next disk at that tower is smaller 
+          than the disk you selected. You can choose another disk or choose 
+          another tower for disk ##{selection}.\n"
     puts "Enter 1 to choose another disk, or 2 to choose another tower:"
     choice = gets.chomp.to_i
     while choice != 1 && choice != 2
@@ -158,49 +141,56 @@ class TowersOfHanoi
   end
   
   def playing_loop
-    while won? == false
       puts "Here are the towers and their disks:\n\n"
-      render
+      render 
       puts "\n"
-      user_makes_move = desired_move
-      disk = user_makes_move[0]
-      from_tower = user_makes_move[1]
-      to_tower = user_makes_move[2]
       
-      while valid_move?(disk, to_tower) == false
+      disk = get_disk
+      from_tower = locate(disk)
+      
+      while from_tower.last != disk
+        puts "Can't take a disk if it's not at the top!"
+        puts "Choose another disk to move."
+        disk = gets.chomp.to_i
+        from_tower = locate(disk)
+      end
+      
+      to_tower = get_to_tower
+      
+      while valid_move?(disk, from_tower, to_tower) == false
           user_choice = turn_invalid_move_valid(disk)
           user_choice == 1 ? break : to_tower = user_choice
       end
       
-      if valid_move?(disk, to_tower)
+      if valid_move?(disk, from_tower, to_tower)
         move(disk, from_tower, to_tower)
         @moves_count += 1
       end
-    end
+  end
+  
+  def won?
+    towers == [[], [], [3, 2, 1]] || 
+    towers == [[], [3,2,1], []]
+  end
+  
+  def winning_message
+    puts "\nYou won!!\n"
+    render
+    puts "\nYou finished the game in #{moves_count} moves!"
+    puts "Thanks for playing :)"
   end
   
   def play
     puts "Welcome to the game!"
     offer_rules
-    playing_loop
+    puts "Press enter to play!"
+    gets
+    playing_loop while won? == false
     winning_message
   end
-  
-  def won?
-    @towers == [[], [], [3, 2, 1]]
-  end
-  
-  def winning_message
-    puts "\n"
-    puts "You won!!"
-    puts "\n"
-    render
-    puts "\n"
-    puts "You finished the game in #{moves_count} moves!"
-    puts "Thanks for playing :)"
-  end
-  
 end
 
-game = TowersOfHanoi.new
-game.play
+if __FILE__ == $PROGRAM_NAME
+  game = TowersOfHanoi.new
+  game.play
+end
