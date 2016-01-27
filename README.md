@@ -8,10 +8,9 @@ My repo of coding challenges solved in the pursuit of learning Ruby. <br />
 => Battleship! Fully playable console game. User plays against computer, making guesses about where the computer
 has placed ships by firing at different locations. 
 <br />
-=> My [Coderbyte](https://coderbyte.com/) solutions for various easy and medium difficulty level problems. 
+=> My [CodeEval](https://www.codeeval.com) solutions for various easy and medium difficulty level problems. 
 <br />
-=> FizzBuzz and more: currently just holds [RubyQuiz #126](http://rubyquiz.com/quiz126.html):FizzBuzz, but I think I'm going to be doing more RubyQuiz things and 
-adding them here when I have time. 
+=> My [Coderbyte](https://coderbyte.com/) solutions for various easy and medium difficulty level problems. 
 <br />
 => Greed game! Extra credit from the [Neo Koans](http://www.rubykoans.com/) course. More info in its [ReadMe](https://github.com/mindplace/learning/tree/master/Greed%20game).
 Fully playable in the console. 
