@@ -277,5 +277,5 @@ def sum_of_primes(max)
         #i = range.bsearch {|item| (item > i)} #bsearch, time = 0.64
         break if i*i > range.length
     end
-    range.inject(:+)
+    range.inject(:+) #3682913
 end
