@@ -6,9 +6,10 @@ def get_multiples(n)
     multiples.map{|item| item.to_s.rjust(4)}.join
 end
 
-
-array = (1..12).to_a
-array.each do |item|
-    puts get_multiples(item)
+def puts_multiples
+    array = (1..12).to_a
+    array.each do |item|
+        puts get_multiples(item)
+    end
 end
 
