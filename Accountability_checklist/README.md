@@ -8,7 +8,6 @@ the interface of my chosen solution to be distinct and bare-bones. The point  of
 daily checklist would be to reflect on the day and to get a feeling of clarity.
 
 Concept:
-
 1. User chooses their personal general growth areas
 2. From specific growth areas, User chooses specific generic daily standards or writes their own.
 3. User recieves daily standards and global to-dos checklist. 
@@ -32,24 +31,3 @@ Example specific standards:
 “I stayed accountable to agreements made with myself."
 “I stayed kind to myself."
 “My day’s work fit into the long-term goals I have for myself."
-
-####
-
-My day was well spent if these standards are met:
-
-- Integrity.
-
-    - Self-control was irrelevant or easy.
-    - I stayed accountable to agreements I made with myself for today.
-    - I stayed accountable to agreements made with others.
-- Productivity.
-
-    - I have set and implemented a plan in the morning which honestly estimated my abilities rather than what I should accomplish.
-    - Organizational control was upkept.
-- Achievement.
-
-    - My day’s work fit into the long-term goals I have for myself.
-- Peace.
-
-    - I have had mainly good feelings, and am not emotionally drained.
-    - I stayed kind to myself.
