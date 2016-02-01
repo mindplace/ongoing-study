@@ -8,9 +8,9 @@ the interface of my chosen solution to be distinct and bare-bones. The point  of
 daily checklist would be to reflect on the day and to get a feeling of clarity.
 
 Concept:
-1. User chooses their personal general growth areas
-2. From specific growth areas, User chooses specific generic daily standards or writes their own.
-3. User recieves daily standards and global to-dos checklist. 
+1. User chooses their personal general growth areas <br />
+2. From specific growth areas, User chooses specific generic daily standards or writes their own.<br />
+3. User recieves daily standards and global to-dos checklist.<br />
 
 Features:
 - Simple daily check-off list
