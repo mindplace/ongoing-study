@@ -2,8 +2,8 @@
 My repo of coding challenges solved in the pursuit of learning Ruby. <br />
 <br />
 <b>Contents:</b> <br />
-=> appAcademy: Problems from appAcademy's [Ruby Basics](http://prepwork.appacademy.io/mini-curriculum/), a great mini-curriculum offered by appAcademy<br /> 
-&emsp; to help their applicants dive more deeply into Ruby. Some problems from appAcademy's pre-course prepwork. 
+=> appAcademy: Problems from appAcademy's [Ruby Basics](http://prepwork.appacademy.io/mini-curriculum/), a mini-curriculum<br />
+&emsp; to help applicants dive more deeply into Ruby. Some problems from appAcademy's pre-course prepwork. 
 <br />
 => My [CodeEval](https://www.codeeval.com) solutions for various easy and medium difficulty level problems. 
 <br />
