@@ -7,27 +7,27 @@ workaround using any of my normal productivity apps, like Wunderlist, because I 
 the interface of my chosen solution to be distinct and bare-bones. The point  of this
 daily checklist would be to reflect on the day and to get a feeling of clarity.
 
-Concept:
+<b>Concept:</b><br />
 1. User chooses their personal general growth areas <br />
 2. From specific growth areas, User chooses specific generic daily standards or writes their own.<br />
 3. User recieves daily standards and global to-dos checklist.<br />
 
-Features:
-- Simple daily check-off list
-- Notification at set time each day to do the check-offs
-- simple charts generated after n days to show progress
-- unmet checkmarks after x days get suggestions for improvement when user opens app
-- ability to use social media to share progress
+<b>Features:</b><br />
+Simple daily check-off list<br />
+Notification at set time each day to do the check-offs<br />
+Simple charts generated after n days to show progress<br />
+Unmet checkmarks after x days get suggestions for improvement when user opens app<br />
+Ability to use social media to share progress<br />
 
-Example growth areas:
-Integrity
-Productivity
-Mindfulness
-Achievement 
-Emotional honesty
+<b>Example growth areas:</b><br />
+Integrity<br />
+Productivity<br />
+Mindfulness<br />
+Achievement <br />
+Emotional honesty<br />
 
-Example specific standards:
-“I set and implemented a plan for the day which honestly estimated my abilities."
-“I stayed accountable to agreements made with myself."
-“I stayed kind to myself."
-“My day’s work fit into the long-term goals I have for myself."
+<b>Example specific standards:</b><br />
+“I set and implemented a plan for the day which honestly estimated my abilities."<br />
+“I stayed accountable to agreements made with myself."<br />
+“I stayed kind to myself."<br />
+“My day’s work fit into the long-term goals I have for myself."<br />
