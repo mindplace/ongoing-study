@@ -26,7 +26,7 @@ class CreateList
     end
 
     def push_to_file(username)
-        file_name = username + ".txt"
+        file_name = "lists/" + username + ".txt"
         exported_list = File.new(file_name, "w")
         list.each{|item| exported_list << "#{item}\n"}
     end

@@ -9,13 +9,13 @@ class Checklist
     end
 
     def get_list
-        file_name = username + ".txt"
+        file_name = "lists/" + username + ".txt"
         list = File.readlines(file_name).map(&:chomp)
         list.nil? ? "No list found" : list
     end
     
     def export_to_tracker
-        file_name = username + "_tracker.txt"
+        file_name = "lists/" + username + "_tracker.txt"
         date = Time.now.to_s.split[0].split("-").reverse.join("/")
         File.open(file_name, "a") do |line|
             line.puts "[#{date}, #{standards_met}, #{standards_unmet}]"
