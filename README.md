@@ -1,3 +1,5 @@
+I write up my updates here: [log](http://mindplace-log.blogspot.com/)
+
 <b><u>mindplace/learning:</b></u> <br />
 My repo of coding challenges solved in the pursuit of learning Ruby. <br />
 <br />
