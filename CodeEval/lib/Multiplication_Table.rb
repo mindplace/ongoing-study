@@ -3,7 +3,7 @@ def get_multiples(n)
     (1..12).to_a.each do |num|
         multiples << num * n
     end
-    multiples.map{|item| item.to_s.rjust(4)}.join
+    multiples.map{|item| item.to_s.rjust(5)}.join
 end
 
 def puts_multiples
@@ -13,3 +13,4 @@ def puts_multiples
     end
 end
 
+puts_multiples
