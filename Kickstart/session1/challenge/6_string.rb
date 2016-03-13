@@ -8,4 +8,19 @@
 # odds_and_evens("abcdefg",false)   # => "aceg"
 
 def odds_and_evens(string, return_odds)
+  returning = ""
+
+    string.chars.each_with_index do |letter, i|
+      if return_odds == true
+        returning << letter if i.odd?
+      elsif return_odds == false 
+        returning << letter if i == 0 || i.even?
+      end
+    end
+  
+  returning
+  
 end
+
+puts odds_and_evens("abcdefg",true)    # => "bdf"
+puts odds_and_evens("abcdefg",false)   # => "aceg"
