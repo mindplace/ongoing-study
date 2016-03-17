@@ -14,3 +14,7 @@
 # prime_chars? ['ab', 'cd']       # => false
 # prime_chars? ['a', 'bcd']       # => false
 # prime_chars? ['a', 'b', 'cd']   # => false
+
+def prime_chars?(array)
+  (2..array.join.length).to_a.select{|x| array.join.length % x == 0}.length == 1
+end

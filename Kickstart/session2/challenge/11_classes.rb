@@ -8,7 +8,7 @@
 # ...
 # One bottle of beer on the wall,
 # One bottle of beer,
-# Take one down, pass it around,
+# Take one down, pass it around, 
 # Zero bottles of beer on the wall.
 #
 # Your program should not use ninety-nine output statements!
