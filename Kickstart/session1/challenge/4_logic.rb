@@ -10,5 +10,18 @@
 # grade(15, true)   # => "B"
 
 def grade(num_books, reads_books)
-  
+  grade = "A"
+  if num_books > 20
+    return grade
+  elsif (10..20).include?(num_books)
+    grade = "B"
+    !reads_books ? grade.next : grade 
+  else 
+    grade = "C"
+    !reads_books ? grade.next : grade 
+  end
 end
+
+p grade(4, false)
+p grade(4, true)
+p grade(15, true)
