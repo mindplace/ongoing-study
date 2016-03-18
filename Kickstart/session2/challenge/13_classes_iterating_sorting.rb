@@ -15,8 +15,6 @@
 #        return self.date == other.date
 #      end
 
-
-
 # ==========  EXAMPLE  ==========
 #
 # lissa = User.new 'QTSort'
@@ -64,3 +62,38 @@
 # date docs are at: http://ruby-doc.org/core/classes/Date.html
 # don't spend too much time worrying about them :)
 require 'date'
+
+class User 
+  attr_accessor :username, :blogs
+  
+  def initialize(username)
+    @username = username
+    @blogs = []
+  end
+  
+  def add_blog(date, text)
+    @blogs.insert(0, Blog.new(date, username, text))
+  end
+end
+
+class Blog 
+  attr_accessor :user, :date, :text
+  
+  def initialize(date, user, text)
+    @date, @user, @text = date, user, text
+  end
+  
+  def summary
+    text.split[0..9].join(" ")
+  end
+  
+  def entry
+    @entry = "#{user} #{date}\n#{text}"
+  end
+end
+
+    user = User.new 'QTSort'
+    user.add_blog(Date.today, "text")
+    p user.blogs.size 
+    p user.blogs.first.date
+    p user.blogs.first.text

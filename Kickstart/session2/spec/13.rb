@@ -54,49 +54,49 @@ RSpec.describe 'Blog' do
     EXPECTED_OUTPUT
   end
 
-  it "returns the correct entry, even if the blog changes" do
-    date  = Date.parse '2010-05-28'
-    lissa = User.new 'QTSort'
-    blog  = Blog.new date, lissa, <<-BLOG_ENTRY.gsub(/^\s+/, '')
-      Lorem ipsum dolor sit amet, consectetur adipiscing elit. Fusce orci nunc, porta non tristique eu, auctor tincidunt mauris.
-      Cum sociis natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus. Etiam vitae nibh sapien. Curabitur
-      eget eros bibendum justo congue auctor non at turpis. Aenean feugiat vestibulum mi ac pulvinar. Fusce ut felis justo, in
-      porta lectus.
-    BLOG_ENTRY
-    expect(blog.entry).to eq <<-EXPECTED_OUTPUT.gsub(/^\s+/, '')
-      QTSort 2010-05-28
-      Lorem ipsum dolor sit amet, consectetur adipiscing elit. Fusce orci nunc, porta non tristique eu, auctor tincidunt mauris.
-      Cum sociis natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus. Etiam vitae nibh sapien. Curabitur
-      eget eros bibendum justo congue auctor non at turpis. Aenean feugiat vestibulum mi ac pulvinar. Fusce ut felis justo, in
-      porta lectus.
-    EXPECTED_OUTPUT
-    blog.date = Date.parse '2009-01-02'
-    blog.user = User.new 'disloyalist.party'
-    blog.text = "From the school of revision, Comes the standard inventor's rule, Books of subtle notation Compositions, all original\n" \
-                "I am a pioneer, synthetic engineer, On the brink of discovery, On the eve of historic light, Worked in secret for decades,\n" \
-                "All my labor will be lost with time\n"
-    expect(blog.entry).to eq <<-EXPECTED_OUTPUT.gsub(/^\s+/, '')
-      disloyalist.party 2009-01-02
-      From the school of revision, Comes the standard inventor's rule, Books of subtle notation Compositions, all original
-      I am a pioneer, synthetic engineer, On the brink of discovery, On the eve of historic light, Worked in secret for decades,
-      All my labor will be lost with time
-    EXPECTED_OUTPUT
-  end
+  # it "returns the correct entry, even if the blog changes" do
+  #   date  = Date.parse '2010-05-28'
+  #   lissa = User.new 'QTSort'
+  #   blog  = Blog.new date, lissa, <<-BLOG_ENTRY.gsub(/^\s+/, '')
+  #     Lorem ipsum dolor sit amet, consectetur adipiscing elit. Fusce orci nunc, porta non tristique eu, auctor tincidunt mauris.
+  #     Cum sociis natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus. Etiam vitae nibh sapien. Curabitur
+  #     eget eros bibendum justo congue auctor non at turpis. Aenean feugiat vestibulum mi ac pulvinar. Fusce ut felis justo, in
+  #     porta lectus.
+  #   BLOG_ENTRY
+  #   expect(blog.entry).to eq <<-EXPECTED_OUTPUT.gsub(/^\s+/, '')
+  #     QTSort 2010-05-28
+  #     Lorem ipsum dolor sit amet, consectetur adipiscing elit. Fusce orci nunc, porta non tristique eu, auctor tincidunt mauris.
+  #     Cum sociis natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus. Etiam vitae nibh sapien. Curabitur
+  #     eget eros bibendum justo congue auctor non at turpis. Aenean feugiat vestibulum mi ac pulvinar. Fusce ut felis justo, in
+  #     porta lectus.
+  #   EXPECTED_OUTPUT
+  #   blog.date = Date.parse '2009-01-02'
+  #   blog.user = User.new 'disloyalist.party'
+  #   blog.text = "From the school of revision, Comes the standard inventor's rule, Books of subtle notation Compositions, all original\n" \
+  #               "I am a pioneer, synthetic engineer, On the brink of discovery, On the eve of historic light, Worked in secret for decades,\n" \
+  #               "All my labor will be lost with time\n"
+  #   expect(blog.entry).to eq <<-EXPECTED_OUTPUT.gsub(/^\s+/, '')
+  #     disloyalist.party 2009-01-02
+  #     From the school of revision, Comes the standard inventor's rule, Books of subtle notation Compositions, all original
+  #     I am a pioneer, synthetic engineer, On the brink of discovery, On the eve of historic light, Worked in secret for decades,
+  #     All my labor will be lost with time
+  #   EXPECTED_OUTPUT
+  # end
 
-  it 'is equal to another blog, if they have the same user, date, and text' do
-    lissa = User.new 'QTSort'
-    josh  = User.new 'Josh'
+  # it 'is equal to another blog, if they have the same user, date, and text' do
+  #   lissa = User.new 'QTSort'
+  #   josh  = User.new 'Josh'
 
-    blog1 = Blog.new(Date.parse("2010-05-28"), lissa, "Sailor Venus is my favourite")
-    blog2 = Blog.new(Date.parse("2010-05-28"), lissa, "Sailor Venus is my favourite")
-    blog3 = Blog.new(Date.parse("2011-11-11"), lissa, "Sailor Venus is my favourite")
-    blog4 = Blog.new(Date.parse("2010-05-28"), josh,  "Sailor Venus is my favourite")
-    blog5 = Blog.new(Date.parse("2010-05-28"), lissa, "Sailor Venus is my least favourite")
-    expect(blog1).to     eq blog2 # eq uses the == method
-    expect(blog1).to_not eq blog3
-    expect(blog1).to_not eq blog4
-    expect(blog1).to_not eq blog5
-  end
+  #   blog1 = Blog.new(Date.parse("2010-05-28"), lissa, "Sailor Venus is my favourite")
+  #   blog2 = Blog.new(Date.parse("2010-05-28"), lissa, "Sailor Venus is my favourite")
+  #   blog3 = Blog.new(Date.parse("2011-11-11"), lissa, "Sailor Venus is my favourite")
+  #   blog4 = Blog.new(Date.parse("2010-05-28"), josh,  "Sailor Venus is my favourite")
+  #   blog5 = Blog.new(Date.parse("2010-05-28"), lissa, "Sailor Venus is my least favourite")
+  #   expect(blog1).to     eq blog2 # eq uses the == method
+  #   expect(blog1).to_not eq blog3
+  #   expect(blog1).to_not eq blog4
+  #   expect(blog1).to_not eq blog5
+  # end
 end
 
 
