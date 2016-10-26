@@ -63,37 +63,47 @@
 # don't spend too much time worrying about them :)
 require 'date'
 
-class User 
-  attr_accessor :username, :blogs
-  
+class User
+  attr_accessor :username
+
   def initialize(username)
     @username = username
     @blogs = []
   end
-  
+
   def add_blog(date, text)
-    @blogs.insert(0, Blog.new(date, username, text))
+    new_blog = Blog.new(date, self, text)
+    @blogs << new_blog
+    new_blog
+  end
+
+  def blogs
+    @blogs.sort_by{|blog| blog.date}.reverse
   end
 end
 
-class Blog 
+class Blog
   attr_accessor :user, :date, :text
-  
+
   def initialize(date, user, text)
     @date, @user, @text = date, user, text
   end
-  
+
   def summary
     text.split[0..9].join(" ")
   end
-  
+
   def entry
-    @entry = "#{user} #{date}\n#{text}"
+    "#{user.username} #{date}\n#{text}"
+  end
+
+  def ==(second_blog)
+    self.entry == second_blog.entry
   end
 end
 
     user = User.new 'QTSort'
     user.add_blog(Date.today, "text")
-    p user.blogs.size 
+    p user.blogs.size
     p user.blogs.first.date
     p user.blogs.first.text
