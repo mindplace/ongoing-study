@@ -26,14 +26,18 @@
 
 
 class Person
-  attr_accessor :name
+  attr_accessor :name, :age, :quote
 
-  def initialize(&initializer)
+  def initialize(options={}, &initializer)
     @initializer = initializer
-    initializer.call self
+    @name = options[:name]
+    @age = options[:age]
+    @quote = options[:quote]
+
+    initializer.call(self) if block_given?
   end
 
   def reinit
-    @initializer.call self
+    @initializer.call(self)
   end
 end

@@ -28,6 +28,17 @@
 #
 # create it from scratch :)
 
+def pathify(hash, string_array = [], built_string = '')
+  hash.each do |key, value|
+    string = "#{built_string}/#{key}"
+    if value.is_a?(Hash)
+      string_array = pathify(value, string_array, string)
+    else
+      value.each { |file| string_array << "#{string}/#{file}" }
+    end
+  end
 
-def pathify
+  string_array
 end
+
+# p pathify('usr' => {'bin' => ['ruby']}, 'opt' => {'local' => {'bin' => ['sqlite3', 'rsync']} } )

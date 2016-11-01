@@ -16,4 +16,22 @@
 # match_maker true,  true,  true, false, nil    # => [false, false]
 # match_maker true,  true,  true, true, nil     # => [false, true]
 # match_maker true,  true,  true, 0, nil        # => [false, true]
+require 'pry'
+def true_and_false(first, second)
+  (first || first == true) && (second.nil? || second == false) ||
+  (second || second == true) && (first.nil? || first == false)
+end
 
+def match_maker(valuer, *args)
+  returning = []
+  (0...args.length).step(2) do |i|
+    first = args[i]
+    second = args[i + 1]
+
+    valuer ?
+    returning << true_and_false(first, second) :
+    returning << !true_and_false(first, second)
+  end
+
+  returning
+end

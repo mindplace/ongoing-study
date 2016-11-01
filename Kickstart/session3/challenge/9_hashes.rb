@@ -29,4 +29,23 @@
 # shared [1,2,3], [3,2,1]            # => [{1=>[true, true], 2=>[true, true], 3=>[true, true]}, [1, 2, 3]]
 
 def shared(a, b)
+  shared_hash = a.map{|el| [el, [true]]}.to_h
+  present_in_both = []
+
+  b.each do |el|
+    if shared_hash[el]
+      shared_hash[el] << true
+      present_in_both << el
+    else
+      shared_hash[el] = [nil, true]
+    end
+  end
+
+  shared_hash = shared_hash.map do |el, set|
+    set << nil if set.length < 2
+    [el, set]
+  end.to_h
+
+
+  [shared_hash, present_in_both.sort]
 end

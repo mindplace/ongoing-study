@@ -8,3 +8,25 @@
 # staircase 4  # => {1 => [], 3 => [2]}
 # staircase 5  # => {1 => [], 3 => [2], 5 =>[2, 4]}
 
+def staircase(num)
+  hash = {}
+  while num > 0
+
+    if num % 2 == 0 # even numbers
+      keys = hash.keys.select{|key| key > num}
+      if keys.length
+        keys.each do |key|
+          hash[key][hash[key].length] = num
+          hash[key] = hash[key].sort
+        end
+      end
+
+    else
+      hash = ({num => []}).merge(hash)
+    end
+
+    num -= 1
+  end
+
+  hash
+end

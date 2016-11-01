@@ -34,7 +34,7 @@ class HTMLTag
   attr_accessor :name, :innerHTML, :options
 
   # options: :multiline should be true or false
-  def initialize(name, innerHTML, options)
+  def initialize(name, innerHTML, options={})
     @name, @innerHTML, @options = name, innerHTML, options
   end
 

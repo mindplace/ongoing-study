@@ -30,5 +30,10 @@
 # end
 
 
-def array_init
+def array_init(num = 5)
+  if block_given?
+    (0...num).to_a.map{|el| yield(el)}
+  else
+    (0...num).to_a.map{|el| (el * 100).to_s}
+  end
 end
