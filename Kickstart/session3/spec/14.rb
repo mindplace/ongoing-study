@@ -1,3 +1,5 @@
+require 'pry'
+
 RSpec.describe 'count_clumps' do
   def self.assert_counts(expected_count, array)
     it "counts #{expected_count} clumps in #{array.inspect}" do

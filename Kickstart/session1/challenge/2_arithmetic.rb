@@ -8,10 +8,10 @@
 # arithmetic2(19, 10)  # => 5.0
 # arithmetic2(-6, -7)  # => -3.5
 
-def arithmetic2(a, b)
-  a < b ? a.to_f / 2 : b.to_f / 2
+def arithmetic2(first, second)
+  if first < second
+    first.to_f * 0.5
+  else
+    second.to_f * 0.5
+  end
 end
-
-p arithmetic2(1, 2)
-p arithmetic2(19, 10)
-p arithmetic2(-6, -7)

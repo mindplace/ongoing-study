@@ -26,30 +26,57 @@
 
 class HTMLTag
   FONTS = {
-    :serif      => '"Times New Roman", "Georgia"',
-    :sans_serif => '"Arial", "Verdana"',
-    :monospace  => '"Courier New", "Lucida Console"'
+    serif:      '"Times New Roman", "Georgia"',
+    sans_serif: '"Arial", "Verdana"',
+    monospace:  '"Courier New", "Lucida Console"'
   }
 
-  attr_accessor :name, :innerHTML, :options
+  COLORS = {
+    red:        "#FF0000",
+    green:      "#00FF00",
+    blue:       "#0000FF"
+  }
 
-  # options: :multiline should be true or false
+  attr_accessor :name, :innerHTML
+
   def initialize(name, innerHTML, options={})
-    @name, @innerHTML, @options = name, innerHTML, options
+    @name, @innerHTML = name, innerHTML
+
+    unless options.nil?
+      @multiline = options[:multiline]
+      @color = options[:color]
+      @font = options[:font]
+    end
   end
 
   def font
-    font = options[:font]  #  one of :serif, :sans_serif, or :monospace
-    FONTS[font]
+    FONTS[@font]
+  end
+
+  def font_to_s
+    "font-family:#{font};" unless font.nil?
+  end
+
+  def color
+    COLORS[@color]
+  end
+
+  def color_to_s
+    "color:#{color};" unless color.nil?
+  end
+
+  def styles_available?
+    !!(font_to_s || color_to_s)
   end
 
   def style
-    return nil unless options[:font]
-    "style='font-family:#{font}'"
+    if styles_available?
+      "style='#{font_to_s}#{color_to_s}'"
+    end
   end
 
   def to_s
-    line_end = if options[:multiline] then "\n" else "" end
+    line_end = if @multiline then "\n" else "" end
     "<#{name} #{style}>#{line_end}"  \
     "#{innerHTML.chomp}#{line_end}"  \
     "</#{name}>\n"

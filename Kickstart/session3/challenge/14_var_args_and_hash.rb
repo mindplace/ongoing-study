@@ -21,11 +21,46 @@
 # problem_14 2,   5, 6, 45, 99, 13, 5, 6,  :problem => :same_ends    # => true
 # problem_14 3,   5, 6, 45, 99, 13, 5, 6,  :problem => :same_ends    # => false
 
-def problem_14
+def problem_14(end_length=nil, *args)
+  options = args.last if args.last.is_a?(Hash)
+  if options.nil? || options[:problem] == :count_clumps
+    array = args.insert(0, end_length).select{|i| i.is_a?(Fixnum)}
+    count_clumps(array)
+  else
+    same_ends(end_length, args[0...-1])
+  end
 end
 
-def same_ends
+def same_ends(subarray_length, *array)
+  array = array.flatten
+  if array.length < subarray_length
+    return false
+  end
+
+  starting_slice = array[0...subarray_length]
+  ending_slice = array[(array.length - subarray_length)..-1]
+  starting_slice == ending_slice
 end
 
-def count_clumps
+def count_clumps(*array)
+  array = array.flatten
+  clumps = 0
+  i = 1
+  currently_on_clump = false
+  while i < array.length
+    previous = array[i - 1]
+
+    if previous == array[i]
+      if !currently_on_clump
+        clumps += 1
+      end
+
+      currently_on_clump = true
+    else
+      currently_on_clump = false
+    end
+
+    i += 1
+  end
+  clumps
 end

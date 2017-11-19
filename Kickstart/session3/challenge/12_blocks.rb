@@ -53,20 +53,15 @@ def pay_by_store_credit(order, current_user)
   order.compute_shipping
   order.compute_tax
   order.payment :type => :store_credit
-  current_user.store_credit -= order.cost   # current_user is a method with no params (ie, the customer)
+
+  # current_user is a method with no params (ie, the customer)
+  current_user.store_credit -= order.cost
+  
   order.ship_goods
 end
 
-def pay_by(type, order)
+def prepare_purchase(order)
   order.compute_cost
   order.compute_shipping
   order.compute_tax
-
-  # if type[:type] == :store_credit
-  #   current_user.store_credit -= order.cost
-  # elsif type[:ccn]
-  #   order.verify_payment
-  # end
-  #
-  # order.ship_goods
 end

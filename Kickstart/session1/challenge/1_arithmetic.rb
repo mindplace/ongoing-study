@@ -3,15 +3,12 @@
 #  $ rake 1:1
 
 # Given a number, return 20 less than, that number multiplied by 5
-# 
+#
 # arithmetic1(10)     # => 30
 # arithmeitc1(10.5)   # => 32.5
 # arithmeitc1(-6)     # => -50
 
-def arithmetic1(n)
-  (n * 5) - 20
+def arithmetic1(number)
+  # returns original number multipleid by 5, minus 20
+  (number * 5) - 20
 end
-
-p arithmetic1(10)
-p arithmetic1(10.5)
-p arithmetic1(-10)

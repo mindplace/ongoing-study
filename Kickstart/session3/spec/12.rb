@@ -29,8 +29,8 @@ RSpec.describe 'refactoring' do
       current_user = double :current_user
       store_credit = double :store_credit
 
-      expect(@order      ).to receive(:payment).once.with(:type => :store_credit)
-      expect(@order      ).to receive(:cost).once.and_return('$Initial store credit')
+      expect(@order).to receive(:payment).once.with(:type => :store_credit)
+      expect(@order).to receive(:cost).once.and_return('$Initial store credit')
       expect(store_credit).to receive(:-).once.with('$Initial store credit').and_return('$Reduced store credit')
       expect(current_user).to receive(:store_credit).once.and_return(store_credit)
       expect(current_user).to receive(:store_credit=).once.with('$Reduced store credit')
