@@ -23,16 +23,17 @@ Slides are [here](https://docs.google.com/presentation/d/14YCO1iScPb3ymlUukYUNyq
 5. Factorize
   * Write a method/function that takes an integer and returns an array of integers representing the original integers factors. E.g., given 10, return [1, 2, 5, 10].
 
-6. Intersections in Arrays
-  * Given two arrays of integers, determine if both arrays contain the same elements, i.e. [1,2,3,4,5] and [5,4,3,2,1].
 
-7. All Unique
+6. All Unique
 
   * Write a function/method that takes a string and returns a boolean based on whether all characters in the string are unique.
 
     Write a function/method that takes an array and returns a boolean based on whether all items in the array are unique.
 
     Write a function/method that takes a hash and returns a boolean based on whether all key/value pairs in the hash are unique.
+
+7. Intersections in Arrays
+  * Given two arrays of integers, determine if both arrays contain the same elements, i.e. [1,2,3,4,5] and [5,4,3,2,1].
 
 8. Factorial
 
