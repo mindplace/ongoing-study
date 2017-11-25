@@ -56,11 +56,11 @@ function runTests(){
 function showElapsedTime(testRunTime){
   var currentTime = Date.now(),
       difference = new Date(currentTime - testRunTime),
-      diffMinutes = difference.getMinutes(),
       diffSeconds = difference.getSeconds(),
       diffMilliseconds = difference.getMilliseconds();
 
-  console.log("\nTotal test time: 00:0" +  diffMinutes + ":0" + diffMilliseconds)
+  console.log("\nTotal test time: 00:0" +  diffSeconds + ":0" + diffMilliseconds)
 }
+
 
 runTests();
