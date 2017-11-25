@@ -5,19 +5,19 @@
 
 ## Easy
 
-#### Smallest in series
-Given a `string` representing a sentence, split the sentence and return shortest `string` without using built-in `methods/functions`.
+1. Smallest in series
+  * Given a `string` representing a sentence, split the sentence and return shortest `string` without using built-in `methods/functions`.
 
-Given an `array`, return the smallest `string`.
+  * Given an `array`, return the smallest `string`.
 
-#### Most common letter
-Given a `string`, return the character that is most common, including the number of times it occurs.
+2. Most common letter
+  * Given a `string`, return the character that is most common, including the number of times it occurs.
 
-#### Normalize an integer
-Given an `integer`, return the `integer` represented as a `string` with commas in the correct positions.
+3. Normalize an integer
+  * Given an `integer`, return the `integer` represented as a `string` with commas in the correct positions.
 
-#### Check for the 10
-Write a `method/function` that takes an `array` of `numbers` and returns a `boolean` based on if any `number` in the `array`, added up to its `index`, equals 10.
+4. Check for the 10
+  * Write a `method/function` that takes an `array` of `numbers` and returns a `boolean` based on if any `number` in the `array`, added up to its `index`, equals 10.
 
 #### Factorize
 Write a `method/function` that takes an `integer` and returns an `array` of `integers` representing the original `integer's` factors. E.g., given `10`, return `[1, 2, 5, 10]`.
